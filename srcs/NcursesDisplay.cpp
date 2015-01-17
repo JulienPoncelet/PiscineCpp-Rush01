@@ -75,8 +75,8 @@ void    setColors(void) {
 
     // init pairs
     init_pair(1, COLOR_BLACK, COLOR_BLACK);
-    init_pair(2, COLOR_RED, COLOR_BLACK);
-    init_pair(3, COLOR_BLACK, COLOR_MAGENTA);
+    init_pair(2, COLOR_BLUE, COLOR_BLACK);
+    init_pair(3, COLOR_BLUE, COLOR_CYAN);
 
 }
 
@@ -121,7 +121,7 @@ std::ostream    &operator<<(std::ostream &o, NcursesDisplay const &i) {
 
 // exceptions
 
-// methods
+// HERE ARE MY BRICKS
 
 void    NcursesDisplay::init(void) {
     initscr();
@@ -138,16 +138,28 @@ void    NcursesDisplay::restore(void) {
     endwin();
 }
 
-void    NcursesDisplay::displayWindow(Position p, std::string title, int color) {
-    (void) color;
-    (void) p;
-    (void) title;
+void    NcursesDisplay::displayWindow(Position p, std::string title, int h, int w, int color) {
+    NWindow     *window = new NWindow(p.getY(), p.getX(), h, w, color);
+    WINDOW      *win = window->getWindow();
+
+    this->_windows.push_back(window);
+    wattron(win, COLOR_PAIR(3));
+    mvwprintw(win, 0, 1, title.c_str());
+    wattroff(win, COLOR_PAIR(3));
+    wrefresh(win);
 }
 
 void    NcursesDisplay::displayText(Position p, std::string const &text, int color) {
     attron(COLOR_PAIR(color));
     mvprintw(p.getY(), p.getX(), text.c_str());
     attroff(COLOR_PAIR(color));
+}
+void    NcursesDisplay::displayText(NWindow *window, Position p, std::string const &text, int color) {
+    WINDOW  *win = window->getWindow();
+
+    wattron(win, COLOR_PAIR(color));
+    mvwprintw(win, p.getY(), p.getX(), text.c_str());
+    wattroff(win, COLOR_PAIR(color));
 }
 
 void    NcursesDisplay::displayUnit(Position p, std::string const &text, std::string const &unit, int color) {
@@ -158,16 +170,38 @@ void    NcursesDisplay::displayUnit(Position p, std::string const &text, std::st
     mvprintw(p.getY(), p.getX(), str.c_str());
     attroff(COLOR_PAIR(color));
 }
+void    NcursesDisplay::displayUnit(NWindow *window, Position p, std::string const &text, std::string const &unit, int color) {
+    std::string str;
+    WINDOW  *win = window->getWindow();
+
+    str = text + " " + unit;
+    wattron(win, COLOR_PAIR(color));
+    wattron(win, COLOR_PAIR(color));
+    mvwprintw(win, p.getY(), p.getX(), str.c_str());
+    wattroff(win, COLOR_PAIR(color));
+}
 
 void    NcursesDisplay::displayBarChart(Position p, std::vector<int> const &data) {
     (void) p;
     (void) data;
 }
 
+void    NcursesDisplay::displayBarChart(NWindow *window, Position p, std::vector<int> const &data) {
+    (void) p;
+    (void) data;
+    (void) window;
+}
+
 void    NcursesDisplay::displayCurve(Position p, std::vector<int> const &data, int color) {
     (void) color;
     (void) p;
     (void) data;
+}
+void    NcursesDisplay::displayCurve(NWindow *window, Position p, std::vector<int> const &data, int color) {
+    (void) color;
+    (void) p;
+    (void) data;
+    (void) window;
 }
 
 void    NcursesDisplay::displaySprite(Position p, std::string const *sprite, int h, int w, int color) {
@@ -177,7 +211,16 @@ void    NcursesDisplay::displaySprite(Position p, std::string const *sprite, int
     (void) h;
     (void) w;
 }
+void    NcursesDisplay::displaySprite(NWindow *window, Position p, std::string const *sprite, int h, int w, int color) {
+    (void) color;
+    (void) p;
+    (void) sprite;
+    (void) h;
+    (void) w;
+    (void) window;
+}
 
+// AND THE MAGIC IS HERE
 void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) {
     (void) windows;
 }

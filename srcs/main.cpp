@@ -11,8 +11,9 @@ int						main(void) {
 	std::cout << *module2 << std::endl;
 
 	display->init();
-	display->displayText(Position(10, 10), "Hello world!", 3);
-	display->displayUnit(Position(30, 12), "123", "%%", 2);
+	display->displayWindow(Position(0, 0), "Title", 10, 50, 2);
+	display->displayWindow(Position(10, 0), "Other title", 20, 50, 2);
+	display->displayWindow(Position(30, 0), "Last title", 10, 50, 2);
 	getch();
 	display->restore();
 	delete module0;

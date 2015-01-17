@@ -5,7 +5,7 @@
 
 class NWindow {
 public:
-    NWindow(int const x, int const y, int const h, int const w);
+    NWindow(int const x, int const y, int const h, int const w, int const color);
     NWindow(NWindow const & src);
     ~NWindow( void );
 
@@ -18,6 +18,7 @@ public:
     int					getY(void) const;
     int					getH(void) const;
     int					getW(void) const;
+    int					getColor(void) const;
     WINDOW 				*getWindow(void) const;
 
 private:
@@ -27,6 +28,7 @@ private:
     int					_y;
     int					_h;
     int					_w;
+    int                 _color;
     WINDOW				*_window;
 };
 

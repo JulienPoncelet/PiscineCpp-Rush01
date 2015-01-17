@@ -10,6 +10,7 @@ SRC = 	main.cpp\
 		ModuleTime.cpp
 
 SRC += 	NcursesDisplay.cpp\
+		NWindow.cpp \
 		Position.cpp
 
 OBJ = $(SRC:.cpp=.o)
