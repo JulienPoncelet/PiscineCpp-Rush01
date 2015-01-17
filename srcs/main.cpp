@@ -9,6 +9,7 @@ int						main(void) {
 	NcursesDisplay		*display = new NcursesDisplay();
 	ModuleHostname		* module0 = new ModuleHostname();
 	ModuleOSInfo		* module1 = new ModuleOSInfo();
+	ModuleTime			* module2 = new ModuleTime();
 	IMonitorModule		* module3 = new ModuleCPU();
 
 	std::list<IMonitorModule*> lst;

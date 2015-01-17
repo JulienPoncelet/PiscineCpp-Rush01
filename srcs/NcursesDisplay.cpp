@@ -225,9 +225,10 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
     std::list<IMonitorModule *>::const_iterator     it;
     std::list<IMonitorModule *>::const_iterator     ite = windows.end();
     IMonitorModule                                  *module;
-    int                                             y = 0, h = 3, w = 50;
+    int                                             y = 0, w = 50, h = 3;
     for (it = windows.begin(); it != ite; ++it) {
         module = *it;
+//        h = module->getHeight() + 2;
         this->displayWindow(Position(y, 0), module->getTitle(), h, w, 2);
         y += h;
     }
