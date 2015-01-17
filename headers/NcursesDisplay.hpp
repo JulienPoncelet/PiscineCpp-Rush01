@@ -20,12 +20,12 @@ public:
     void    init(void);
     void    restore(void);
 
-    void    displayWindow(Position p, std::string title);
-    void    displayText(Position p, std::string const &text);
-    void    displayUnit(Position p, std::string const &text, std::string const &unit);
+    void    displayWindow(Position p, std::string title, int color);
+    void    displayText(Position p, std::string const &text, int color);
+    void    displayUnit(Position p, std::string const &text, std::string const &unit, int color);
     void    displayBarChart(Position p, std::vector<int> const &data);
-    void    displayCurve(Position p, std::vector<int> const &data);
-    void    displaySprite(Position p, std::string const *sprite, int h, int w);
+    void    displayCurve(Position p, std::vector<int> const &data, int color);
+    void    displaySprite(Position p, std::string const *sprite, int h, int w, int color);
 
     void    initWindows(std::list<IMonitorModule *> const &windows);
     void    reorderWindows(std::list<IMonitorModule *> windows);
@@ -39,6 +39,7 @@ public:
 private:
 
     static bool         _VERBOSE;
+    std::list<WINDOW *> _windows;
 
 };
 

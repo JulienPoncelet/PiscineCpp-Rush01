@@ -25,11 +25,13 @@ class ModuleTime;
 # include <ModuleOSInfo.hpp>
 # include <ModuleTime.hpp>
 
+class Position;
+class NWindow;
 class IMonitorDisplay;
 class NcursesDisplay;
-class Position;
 
 # include <Position.hpp>
+# include <NWindow.hpp>
 # include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
 #endif

@@ -17,12 +17,12 @@ public:
     virtual void    init(void) = 0;
     virtual void    restore(void) = 0;
 
-    virtual void    displayWindow(Position p, std::string title) = 0;
-    virtual void    displayText(Position p, std::string const &text) = 0;
-    virtual void    displayUnit(Position p, std::string const &text, std::string const &unit) = 0;
+    virtual void    displayWindow(Position p, std::string title, int color) = 0;
+    virtual void    displayText(Position p, std::string const &text, int color) = 0;
+    virtual void    displayUnit(Position p, std::string const &text, std::string const &unit, int color) = 0;
     virtual void    displayBarChart(Position p, std::vector<int> const &data) = 0;
-    virtual void    displayCurve(Position p, std::vector<int> const &data) = 0;
-    virtual void    displaySprite(Position p, std::string const *sprite, int h, int w) = 0;
+    virtual void    displayCurve(Position p, std::vector<int> const &data, int color) = 0;
+    virtual void    displaySprite(Position p, std::string const *sprite, int h, int w, int color) = 0;
 
     virtual void    initWindows(std::list<IMonitorModule *> const &windows) = 0;
     virtual void    reorderWindows(std::list<IMonitorModule *> windows) = 0;
