@@ -138,14 +138,17 @@ void    NcursesDisplay::restore(void) {
     endwin();
 }
 
-void    NcursesDisplay::displayWindow(Position p, std::string title, int h, int w, int color) {
+void    NcursesDisplay::displayWindow(Position p, IMonitorModule *module, int h, int w, int color) {
     NWindow     *window = new NWindow(p.getY(), p.getX(), h, w, color);
     WINDOW      *win = window->getWindow();
 
-    this->_windows.insert(std::pair<std::string, NWindow *>(title, window));
+    this->_windows.insert(std::pair<std::string, NWindow *>(module->getTitle(), window));
     wattron(win, COLOR_PAIR(3));
-    mvwprintw(win, 0, 1, title.c_str());
-    wattroff(win, COLOR_PAIR(3));
+    mvwprintw(win, 0, 1, module->getTitle().c_str());
+    wattroff(win, COLOR_PAIR(2));
+    wattron(win, COLOR_PAIR(2));
+    mvwprintw(win, 1, 1, module->getContent().c_str());
+    wattroff(win, COLOR_PAIR(2));
     wrefresh(win);
 }
 
@@ -225,11 +228,11 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
     std::list<IMonitorModule *>::const_iterator     it;
     std::list<IMonitorModule *>::const_iterator     ite = windows.end();
     IMonitorModule                                  *module;
-    int                                             y = 0, w = 50, h = 3;
+    int                                             y = 0, w = 70, h;
     for (it = windows.begin(); it != ite; ++it) {
         module = *it;
-//        h = module->getHeight() + 2;
-        this->displayWindow(Position(y, 0), module->getTitle(), h, w, 2);
+        h = module->getHeight() + 2;
+        this->displayWindow(Position(y, 0), module, h, w, 2);
         y += h;
     }
 }

@@ -11,16 +11,20 @@ public:
 
 	virtual std::string const		& getTitle(void) const = 0;
 	virtual displayType_e const		& getType(void) const = 0;
+	virtual std::string const		& getContent(void) const = 0;
+	virtual int const				& getHeight(void) const = 0;
 
 	virtual void					setTitle(std::string title) = 0;
 	virtual void					setType(displayType_e type) = 0;
+	virtual void					setContent(std::string content) = 0;
+	virtual void					setHeight(int height) = 0;
 	virtual std::string				toString(void) const = 0;
 
 protected:
 
 	std::string				_title;
-	displayType_e			_type;
 	int						_height;
+	displayType_e			_type;
 
 };
 

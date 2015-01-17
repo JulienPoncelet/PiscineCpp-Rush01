@@ -20,7 +20,7 @@ public:
     void    init(void);
     void    restore(void);
 
-    void    displayWindow(Position p, std::string title, int h, int w, int color);
+    void    displayWindow(Position p, IMonitorModule *module, int h, int w, int color);
 
     void    displayText(Position p, std::string const &text, int color);
     void    displayText(NWindow *window, Position p, std::string const &text, int color);
