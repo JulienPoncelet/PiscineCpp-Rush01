@@ -10,7 +10,7 @@ class IMonitorDisplay {
 public:
 
     // constructor and destructor
-    virtual ~IMonitorDisplay(void);
+    virtual ~IMonitorDisplay(void) {}
 
     // methods
 

@@ -16,7 +16,8 @@ DIRSRC = ./srcs/
 DIROBJ = ./.obj/
 
 SRC = 	main.cpp\
-		ModuleHostname.cpp
+		ModuleHostname.cpp\
+		NcursesDisplay.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
