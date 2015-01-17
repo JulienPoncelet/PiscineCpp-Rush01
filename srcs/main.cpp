@@ -6,6 +6,10 @@ int						main(void) {
 
 	std::cout << *module0 << std::endl;
 
+	display->init();
+	printw("Hello world!");
+	getch();
+	display->restore();
 	delete module0;
 	delete display;
 

@@ -6,6 +6,83 @@
 
 bool    NcursesDisplay::_VERBOSE = true;
 
+// ***************************************************
+// ***************** MISC FUNCTIONS ******************
+// ***************************************************
+
+void    switchDefaultColors(bool save) {
+    static short black[3];
+    static short red[3];
+    static short green[3];
+    static short yellow[3];
+    static short blue[3];
+    static short magenta[3];
+    static short cyan[3];
+    static short white[3];
+
+    if (save) {
+        color_content(COLOR_BLACK, &black[0], &black[1], &black[2]);
+        color_content(COLOR_RED, &red[0], &red[1], &red[2]);
+        color_content(COLOR_GREEN, &green[0], &green[1], &green[2]);
+        color_content(COLOR_YELLOW, &yellow[0], &yellow[1], &yellow[2]);
+        color_content(COLOR_BLUE, &blue[0], &blue[1], &blue[2]);
+        color_content(COLOR_MAGENTA, &magenta[0], &magenta[1], &magenta[2]);
+        color_content(COLOR_CYAN, &cyan[0], &cyan[1], &cyan[2]);
+        color_content(COLOR_WHITE, &white[0], &white[1], &white[2]);
+    }
+    else {
+        init_color(COLOR_BLACK, black[0], black[1], black[2]);
+        init_color(COLOR_RED, red[0], red[1], red[2]);
+        init_color(COLOR_GREEN, green[0], green[1], green[2]);
+        init_color(COLOR_YELLOW, yellow[0], yellow[1], yellow[2]);
+        init_color(COLOR_BLUE, blue[0], blue[1], blue[2]);
+        init_color(COLOR_MAGENTA, magenta[0], magenta[1], magenta[2]);
+        init_color(COLOR_CYAN, cyan[0], cyan[1], cyan[2]);
+        init_color(COLOR_WHITE, white[0], white[1], white[2]);
+    }
+}
+
+void    initColors() {
+    // init default color - TODO: later create different games color profiles
+    init_color(COLOR_BLACK, 0, 0, 0);
+    init_color(COLOR_RED, 700, 0, 0);
+    init_color(COLOR_GREEN, 0, 0, 700);
+    init_color(COLOR_YELLOW, 700, 700, 0);
+    init_color(COLOR_BLUE, 0, 0, 700);
+    init_color(COLOR_MAGENTA, 700, 0, 700);
+    init_color(COLOR_CYAN, 0, 400, 700);
+    init_color(COLOR_WHITE, 700, 700, 700);
+}
+
+void    setColors(void) {
+    // color support is required for this game
+    if (!can_change_color()) {
+        printw("ERROR: Your terminal can't change colors");
+        getch();
+        endwin();
+        exit(1);
+    }
+    if (has_colors() == FALSE) {
+        printw("ERROR: Your terminal does not support color\n");
+        getch();
+        endwin();
+        exit(1);
+    }
+
+    start_color();
+    switchDefaultColors(true);
+    initColors();
+
+    // init pairs
+    init_pair(1, COLOR_BLACK, COLOR_BLACK);
+    init_pair(2, COLOR_RED, COLOR_BLACK);
+    init_pair(3, COLOR_BLACK, COLOR_MAGENTA);
+
+}
+
+// ***************************************************
+// ***************** CLASS BODY **********************
+// ***************************************************
 
 // constructor and destructor
 NcursesDisplay::NcursesDisplay(void) : IMonitorDisplay() {
@@ -46,6 +123,21 @@ std::ostream    &operator<<(std::ostream &o, NcursesDisplay const &i) {
 
 // methods
 
+void    NcursesDisplay::init(void) {
+    initscr();
+    raw();
+    keypad(stdscr, true);
+    noecho();
+    curs_set(0);
+    setColors();
+    refresh();
+}
+
+void    NcursesDisplay::restore(void) {
+    switchDefaultColors(false);
+    endwin();
+}
+
 void    NcursesDisplay::displayWindow(std::string title) {
     (void) title;
 }
@@ -73,22 +165,21 @@ void    NcursesDisplay::displaySprite(std::string const *sprite, int h, int w) {
     (void) w;
 }
 
-void    NcursesDisplay::initWindows(std::list<Data *> const &windows) {
+void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) {
     (void) windows;
 }
 
-void    NcursesDisplay::reorderWindows(std::list<Data *> windows) {
+void    NcursesDisplay::reorderWindows(std::list<IMonitorModule *> windows) {
     (void) windows;
 }
 
-void    NcursesDisplay::hideWindow(std::list<Data *>::const_iterator at) {
+void    NcursesDisplay::hideWindow(std::list<IMonitorModule *>::const_iterator at) {
     (void) at;
 }
-void    NcursesDisplay::showWindow(std::list<Data *>::const_iterator at) {
+void    NcursesDisplay::showWindow(std::list<IMonitorModule *>::const_iterator at) {
     (void) at;
 }
 
 void    NcursesDisplay::changeSkin(std::string const &skin) {
     (void) skin;
 }
-

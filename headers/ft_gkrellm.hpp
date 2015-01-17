@@ -5,14 +5,12 @@
 # include <sstream>
 # include <vector>
 # include <list>
+# include <cstdlib>
 # include <unistd.h>
+# include <ncurses.h>
 
 enum displayType_e{
 	SIMPLE = 1, POURCENTAGE, GRAPHICAL
-};
-
-struct Data {
-
 };
 
 class IMonitorModule;

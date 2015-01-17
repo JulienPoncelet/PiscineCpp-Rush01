@@ -17,6 +17,9 @@ public:
     NcursesDisplay          &operator=(NcursesDisplay const &rhs);
 
     // methods
+    void    init(void);
+    void    restore(void);
+
     void    displayWindow(std::string title);
     void    displayText(std::string const &text);
     void    displayUnit(std::string const &text, std::string const &unit);
@@ -24,10 +27,10 @@ public:
     void    displayCurve(std::vector<int> const &data);
     void    displaySprite(std::string const *sprite, int h, int w);
 
-    void    initWindows(std::list<Data *> const &windows);
-    void    reorderWindows(std::list<Data *> windows);
-    void    hideWindow(std::list<Data *>::const_iterator at);
-    void    showWindow(std::list<Data *>::const_iterator at);
+    void    initWindows(std::list<IMonitorModule *> const &windows);
+    void    reorderWindows(std::list<IMonitorModule *> windows);
+    void    hideWindow(std::list<IMonitorModule *>::const_iterator at);
+    void    showWindow(std::list<IMonitorModule *>::const_iterator at);
 
     void    changeSkin(std::string const &skin);
 
