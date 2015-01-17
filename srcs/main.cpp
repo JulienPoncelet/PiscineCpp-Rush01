@@ -14,15 +14,14 @@ int						main(void) {
 
 	std::list<IMonitorModule*> lst;
 
-	display->init();
 	lst.push_back(module0);
 	lst.push_back(module1);
 	lst.push_back(module2);
 	lst.push_back(module3);
 
+	display->init();
+
 	display->initWindows(lst);
-	getch();
-	display->updateWindow(module2);
 	getch();
 	display->restore();
 	delete display;

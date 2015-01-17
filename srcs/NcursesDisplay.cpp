@@ -147,7 +147,9 @@ void    NcursesDisplay::displayWindow(Position p, IMonitorModule *module, int h,
     mvwprintw(win, 0, 1, module->getTitle().c_str());
     wattroff(win, COLOR_PAIR(3));
     wattron(win, COLOR_PAIR(2));
-    mvwprintw(win, 1, 1, module->getContent().c_str());
+    //mvwprintw(win, 1, 1, module->getContent().c_str());
+    // but now
+    this->displaySprite(window, Position(1, 1), module->getContent(), module->getContent().size(), 0, 1);
     wattroff(win, COLOR_PAIR(2));
     wrefresh(win);
 }
@@ -207,17 +209,27 @@ void    NcursesDisplay::displayCurve(NWindow *window, Position p, std::vector<in
     (void) window;
 }
 
-void    NcursesDisplay::displaySprite(Position p, std::string const *sprite, int h, int w, int color) {
+void    NcursesDisplay::displaySprite(Position p, StringList list, int h, int w, int color) {
     (void) color;
     (void) p;
-    (void) sprite;
+    (void) list;
     (void) h;
     (void) w;
 }
-void    NcursesDisplay::displaySprite(NWindow *window, Position p, std::string const *sprite, int h, int w, int color) {
+void    NcursesDisplay::displaySprite(NWindow *window, Position p, StringList list, int h, int w, int color) {
+    StringList::const_iterator      it;
+    StringList::const_iterator      ite = list.end();
+    int                             y = p.getY();
+    std::string                     str;
+
+    for (it = list.begin(); it != ite; ++it) {
+        str = *it;
+        mvwprintw(window->getWindow(), y, p.getX(), str.c_str());
+        y++;
+    }
     (void) color;
     (void) p;
-    (void) sprite;
+    (void) list;
     (void) h;
     (void) w;
     (void) window;

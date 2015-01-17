@@ -34,8 +34,8 @@ public:
     void    displayCurve(Position p, std::vector<int> const &data, int color);
     void    displayCurve(NWindow *window, Position p, std::vector<int> const &data, int color);
 
-    void    displaySprite(Position p, std::string const *sprite, int h, int w, int color);
-    void    displaySprite(NWindow *window, Position p, std::string const *sprite, int h, int w, int color);
+    void    displaySprite(Position p, StringList list, int h, int w, int color);
+    void    displaySprite(NWindow *window, Position p, StringList list, int h, int w, int color);
 
     void    updateWindow(IMonitorModule *module);
     void    deleteWindow(std::string const &title);
