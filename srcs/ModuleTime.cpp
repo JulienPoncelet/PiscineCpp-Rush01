@@ -36,7 +36,6 @@ std::string 				ModuleTime::toString(void) const {
 	out << "ModuleTime:" << std::endl;
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
-	out << "\tContent: " << getContent() << std::endl;
 	out << "\tHeight: " << getHeight() << std::endl;
 	out << "\033[0m";
 	return out.str();
@@ -51,6 +50,10 @@ void						ModuleTime::fillContent(void) {
     sstr << now->tm_min << ":";
     sstr << now->tm_sec;
 
-    setContent(sstr.str());
+    StringList				content;
+
+    content.push_back(sstr.str());
+
+    setContent(content);
     return ;
 }
