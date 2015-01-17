@@ -3,7 +3,7 @@
 
 # include <ft_gkrellm.hpp>
 
-class ModuleHostname : public IMonitorModule {
+class ModuleHostname : public AModuleSimple {
 
 public:
 
@@ -15,11 +15,7 @@ public:
 
 	std::string				toString(void) const;
 
-	std::string const		& getTitle(void) const;
-	displayType_e const		& getType(void) const;
-
-	void					setTitle(std::string title);
-	void					setType(displayType_e type);
+	void					fillContent(void);
 
 };
 

@@ -1,12 +1,13 @@
 #include <ft_gkrellm.hpp>
 
-ModuleHostname::ModuleHostname(void) {
+ModuleHostname::ModuleHostname(void) : AModuleSimple() {
 	setTitle("Hostname");
 	setType(SIMPLE);
+	fillContent();
 	return ;
 }
 
-ModuleHostname::ModuleHostname(ModuleHostname const & src) {
+ModuleHostname::ModuleHostname(ModuleHostname const & src) : AModuleSimple(src) {
 	*this = src;
 	return ;
 }
@@ -18,6 +19,7 @@ ModuleHostname::~ModuleHostname(void) {
 ModuleHostname 				& ModuleHostname::operator=(ModuleHostname const & rhs) {
 	setTitle(rhs.getTitle());
 	setType(rhs.getType());
+	setContent(rhs.getContent());
 	return *this;
 }
 
@@ -33,24 +35,15 @@ std::string 				ModuleHostname::toString(void) const {
 	out << "ModuleHostname:" << std::endl;
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
+	out << "\tContent: " << getContent() << std::endl;
 	out << "\033[0m";
 	return out.str();
 }
 
-std::string const			& ModuleHostname::getTitle(void) const {
-	return _title;
-}
+void						ModuleHostname::fillContent(void) {
+	char					buffer[400];
 
-displayType_e const			& ModuleHostname::getType(void) const {
-	return _type;
-}
-
-void						ModuleHostname::setTitle(std::string title) {
-	_title = title;
-	return ;
-}
-
-void						ModuleHostname::setType(displayType_e type) {
-	_type = type;
+	gethostname(buffer, 400);
+	setContent(buffer);
 	return ;
 }

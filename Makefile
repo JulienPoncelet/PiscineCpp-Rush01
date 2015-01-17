@@ -16,6 +16,7 @@ DIRSRC = ./srcs/
 DIROBJ = ./.obj/
 
 SRC = 	main.cpp\
+		AModuleSimple.cpp\
 		ModuleHostname.cpp
 
 OBJ = $(SRC:.cpp=.o)
