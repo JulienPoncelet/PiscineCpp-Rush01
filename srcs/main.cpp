@@ -6,11 +6,12 @@ std::ostream 				& operator<<(std::ostream & out, IMonitorModule const & rhs){
 }
 
 int						main(void) {
-	NcursesDisplay		*display = new NcursesDisplay();
-	ModuleHostname		* module0 = new ModuleHostname();
-	ModuleOSInfo		* module1 = new ModuleOSInfo();
-	ModuleTime			* module2 = new ModuleTime();
+	NcursesDisplay		* display = new NcursesDisplay();
+	IMonitorModule		* module0 = new ModuleHostname();
+	IMonitorModule		* module1 = new ModuleOSInfo();
+	IMonitorModule		* module2 = new ModuleTime();
 	IMonitorModule		* module3 = new ModuleCPU();
+	IMonitorModule		* module4 = new ModuleRAM();
 
 	std::list<IMonitorModule*> lst;
 
@@ -18,6 +19,7 @@ int						main(void) {
 	lst.push_back(module1);
 	lst.push_back(module2);
 	lst.push_back(module3);
+	lst.push_back(module4);
 
 	display->init();
 

@@ -8,7 +8,8 @@ SRC = 	main.cpp\
 		ModuleHostname.cpp\
 		ModuleOSInfo.cpp\
 		ModuleTime.cpp\
-		ModuleCPU.cpp
+		ModuleCPU.cpp\
+		ModuleRAM.cpp
 
 SRC += 	NcursesDisplay.cpp\
 		NWindow.cpp \
