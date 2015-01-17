@@ -9,6 +9,7 @@
 # include <cstdlib>
 # include <unistd.h>
 # include <ncurses.h>
+# include <time.h>
 # include <algorithm>
 
 typedef std::list< std::string > StringList;

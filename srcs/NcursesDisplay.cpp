@@ -125,11 +125,12 @@ std::ostream    &operator<<(std::ostream &o, NcursesDisplay const &i) {
 
 void    NcursesDisplay::init(void) {
     initscr();
-    raw();
+    cbreak();
     keypad(stdscr, true);
     noecho();
     curs_set(0);
     setColors();
+    nodelay(stdscr, true);
     refresh();
 }
 
@@ -251,16 +252,18 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
 
 void    NcursesDisplay::updateWindow(IMonitorModule *module) {
     std::map<std::string, NWindow *>::iterator it;
+    NWindow     *window;
     WINDOW      *win;
 
     it = this->_windows.find(module->getTitle());
+    window = &(*it->second);
     win = &(*it->second->getWindow());
     werase(win);
     wborder(win, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
     wattron(win, COLOR_PAIR(3));
     mvwprintw(win, 0, 1, module->getTitle().c_str());
     wattroff(win, COLOR_PAIR(3));
-    mvwprintw(win, 1, 1, "Hello world!"); //module->getContent().c_str());
+    this->displaySprite(window, Position(1, 1), module->getContent(), module->getContent().size(), 0, 1);
     wrefresh(win);
 }
 
