@@ -16,21 +16,21 @@ public:
 	std::string				toString(void) const;
 
 	virtual void			fillContent(void) = 0;
-	void					fillHeight(std::string const & content);
+	void					fillHeight(StringList const & content);
 
 	std::string const		& getTitle(void) const;
 	displayType_e const		& getType(void) const;
-	std::string const		& getContent(void) const;
+	StringList const		& getContent(void) const;
 	int const				& getHeight(void) const;
 
 	void					setTitle(std::string title);
 	void					setType(displayType_e type);
-	void					setContent(std::string content);
+	void					setContent(StringList content);
 	void					setHeight(int height);
 
 protected:
 
-	std::string 			_content;
+	StringList 				_content;
 
 };
 

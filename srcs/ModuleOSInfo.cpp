@@ -36,27 +36,31 @@ std::string 				ModuleOSInfo::toString(void) const {
 	out << "ModuleOSInfo:" << std::endl;
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
-	out << "\tContent: " << getContent() << std::endl;
 	out << "\tHeight: " << getHeight() << std::endl;
 	out << "\033[0m";
 	return out.str();
 }
 
 void						ModuleOSInfo::fillContent(void) {
+    StringList				content;
+
     #ifdef _WIN32
-    	setContent("Windows 32-bit");
+    	content.push_back("Windows 32-bit");
     #elif _WIN64
-    	setContent("Windows 64-bit");
+    	content.push_back("Windows 64-bit");
     #elif __unix || __unix__
-    	setContent("Unix");
+    	content.push_back("Unix");
     #elif __APPLE__ || __MACH__
-    	setContent("Mac OSX");
+    	content.push_back("Mac OSX");
     #elif __linux__
-    	setContent("Linux");
+    	content.push_back("Linux");
     #elif __FreeBSD__
-    	setContent("FreeBSD");
+    	content.push_back("FreeBSD");
     #else
-    	setContent("Other");
+    	content.push_back("Other");
     #endif
+
+    setContent(content);
+
 	return ;
 }

@@ -36,7 +36,6 @@ std::string 				ModuleHostname::toString(void) const {
 	out << "ModuleHostname:" << std::endl;
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
-	out << "\tContent: " << getContent() << std::endl;
 	out << "\tHeight: " << getHeight() << std::endl;
 	out << "\033[0m";
 	return out.str();
@@ -44,8 +43,11 @@ std::string 				ModuleHostname::toString(void) const {
 
 void						ModuleHostname::fillContent(void) {
 	char					buffer[400];
+	StringList				content;
 
 	gethostname(buffer, 400);
-	setContent(buffer);
+	content.push_back(buffer);
+
+	setContent(content);
 	return ;
 }

@@ -11,6 +11,8 @@
 # include <ncurses.h>
 # include <algorithm>
 
+typedef std::list< std::string > StringList;
+
 enum displayType_e{
 	SIMPLE = 1, POURCENTAGE, GRAPHICAL
 };

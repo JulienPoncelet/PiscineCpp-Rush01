@@ -3,8 +3,6 @@
 AModuleSimple::AModuleSimple(void) {
 	setTitle("Module Simple");
 	setType(SIMPLE);
-	setContent("Default Content");
-	setHeight(3);
 	return ;
 }
 
@@ -37,14 +35,13 @@ std::string 				AModuleSimple::toString(void) const {
 	out << "Module Simple:" << std::endl;
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
-	out << "\tContent: " << getContent() << std::endl;
 	out << "\tHeight: " << getHeight() << std::endl;
 	out << "\033[0m";
 	return out.str();
 }
 
-void						AModuleSimple::fillHeight(std::string const & content) {
-	setHeight(std::count(content.begin(), content.end(), '\n') + 1);
+void						AModuleSimple::fillHeight(StringList const & content) {
+	setHeight(content.size());
 	return ;
 }
 
@@ -57,7 +54,7 @@ displayType_e const			& AModuleSimple::getType(void) const {
 	return _type;
 }
 
-std::string const			& AModuleSimple::getContent(void) const {
+StringList const			& AModuleSimple::getContent(void) const {
 	return _content;
 }
 
@@ -75,7 +72,7 @@ void						AModuleSimple::setType(displayType_e type) {
 	return ;
 }
 
-void						AModuleSimple::setContent(std::string content) {
+void						AModuleSimple::setContent(StringList content) {
 	_content = content;
 	return ;
 }
