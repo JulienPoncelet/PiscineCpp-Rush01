@@ -23,9 +23,9 @@ class ModuleHostname;
 # include <AModuleSimple.hpp>
 # include <ModuleHostname.hpp>
 
-class IMonitorModule;
+class IMonitorDisplay;
 class NcursesDisplay;
 
+# include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
-# include <IMonitorModule.hpp>
 #endif

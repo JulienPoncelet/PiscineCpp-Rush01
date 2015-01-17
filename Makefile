@@ -15,7 +15,7 @@ DIROBJS = $(addprefix $(DIROBJ), $(OBJ))
 HEADERS = ./headers/
 
 CFLAGS = -Wall -Werror -Wextra -g
-CC = g++
+CC = /usr/local/bin/g++
 
 all: $(NAME)
 
