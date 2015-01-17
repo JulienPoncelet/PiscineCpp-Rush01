@@ -19,6 +19,8 @@ public:
     int					getH(void) const;
     int					getW(void) const;
     int					getColor(void) const;
+    int					getRank(void) const;
+    bool				isVisible(void) const;
     WINDOW 				*getWindow(void) const;
 
 private:
@@ -29,6 +31,8 @@ private:
     int					_h;
     int					_w;
     int                 _color;
+    int                 _rank;
+    bool                _visible;
     WINDOW				*_window;
 };
 

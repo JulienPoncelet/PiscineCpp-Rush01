@@ -28,6 +28,8 @@ NWindow &			NWindow::operator=(NWindow const & rhs) {
     this->_y = rhs.getY();
     this->_h = rhs.getH();
     this->_w = rhs.getW();
+    this->_rank = rhs.getRank();
+    this->_visible = rhs.isVisible();
     this->_color = rhs.getColor();
 
     return *this;
@@ -57,6 +59,14 @@ int					NWindow::getW(void) const {
 int					NWindow::getColor(void) const {
     return this->_color;
 }
+
+int					NWindow::getRank(void) const {
+    return this->_rank;
+}
+
+bool                NWindow::isVisible(void) const {
+    return this->_visible;
+};
 
 WINDOW 				*NWindow::getWindow(void) const {
     return this->_window;
