@@ -5,10 +5,12 @@ DIROBJ = ./.obj/
 
 SRC = 	main.cpp\
 		AModuleSimple.cpp\
+		AModuleGraph.cpp\
 		ModuleHostname.cpp\
 		ModuleOSInfo.cpp\
 		ModuleTime.cpp\
-		ModuleCPU.cpp\
+		ModuleCPUInfo.cpp\
+		ModuleCPUUsage.cpp\
 		ModuleRAM.cpp
 
 SRC += 	NcursesDisplay.cpp\

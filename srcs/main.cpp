@@ -43,8 +43,9 @@ int						main(void) {
 	IMonitorModule		* module0 = new ModuleHostname();
 	IMonitorModule		* module1 = new ModuleOSInfo();
 	IMonitorModule		* module2 = new ModuleTime();
-	IMonitorModule		* module3 = new ModuleCPU();
-	IMonitorModule		* module4 = new ModuleRAM();
+	IMonitorModule		* module3 = new ModuleCPUInfo();
+	IMonitorModule		* module4 = new ModuleCPUUsage();
+	IMonitorModule		* module5 = new ModuleRAM();
 
 	std::list<IMonitorModule*> list;
 
@@ -53,6 +54,7 @@ int						main(void) {
 	list.push_back(module2);
 	list.push_back(module3);
 	list.push_back(module4);
+	list.push_back(module5);
 
 	display->init();
 	display->initWindows(list);
@@ -66,6 +68,8 @@ int						main(void) {
 	delete module1;
 	delete module2;
 	delete module3;
+	delete module4;
+	delete module5;
 
 	return 0;
 }

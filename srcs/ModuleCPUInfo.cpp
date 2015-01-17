@@ -1,39 +1,39 @@
 #include <ft_gkrellm.hpp>
 
-ModuleCPU::ModuleCPU(void) : AModuleSimple() {
-	setTitle("CPU");
+ModuleCPUInfo::ModuleCPUInfo(void) : AModuleSimple() {
+	setTitle("CPU Info");
 	setType(SIMPLE);
 	fillContent();
 	fillHeight(getContent());
 	return ;
 }
 
-ModuleCPU::ModuleCPU(ModuleCPU const & src) : AModuleSimple(src) {
+ModuleCPUInfo::ModuleCPUInfo(ModuleCPUInfo const & src) : AModuleSimple(src) {
 	*this = src;
 	return ;
 }
 
-ModuleCPU::~ModuleCPU(void) {
+ModuleCPUInfo::~ModuleCPUInfo(void) {
 	return ;
 }
 
-ModuleCPU 						& ModuleCPU::operator=(ModuleCPU const & rhs) {
+ModuleCPUInfo 						& ModuleCPUInfo::operator=(ModuleCPUInfo const & rhs) {
 	setTitle(rhs.getTitle());
 	setType(rhs.getType());
 	setContent(rhs.getContent());
 	return *this;
 }
 
-std::ostream 					& operator<<(std::ostream & out, ModuleCPU const & rhs){
+std::ostream 					& operator<<(std::ostream & out, ModuleCPUInfo const & rhs){
 	out << rhs.toString();
 	return out;
 }
 
-std::string 					ModuleCPU::toString(void) const {
+std::string 					ModuleCPUInfo::toString(void) const {
 	std::ostringstream 			out;
 
 	out << "\033[36m";
-	out << "ModuleCPU:" << std::endl;
+	out << "ModuleCPUInfo:" << std::endl;
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
 	out << "\tHeight: " << getHeight() << std::endl;
@@ -41,7 +41,7 @@ std::string 					ModuleCPU::toString(void) const {
 	return out.str();
 }
 
-void							ModuleCPU::fillContent(void) {
+void							ModuleCPUInfo::fillContent(void) {
     FILE 						*in;
     char						buffer[512];
     std::stringstream			sstr;
