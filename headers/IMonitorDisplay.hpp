@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <ft_gkrellm.hpp>
 
 class IMonitorDisplay {
 public:

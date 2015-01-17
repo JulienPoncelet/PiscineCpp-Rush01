@@ -9,9 +9,11 @@ enum displayType_e{
 };
 
 class IMonitorModule;
+class IMonitorDisplay;
 class ModuleHostname;
 
 # include <IMonitorModule.hpp>
+# include <IMonitorDisplay.hpp>
 # include <ModuleHostname.hpp>
 
 #endif
