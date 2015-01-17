@@ -1,21 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/05 09:28:50 by jponcele          #+#    #+#              #
-#    Updated: 2015/01/05 09:28:54 by jponcele         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = ft_gkrellm
 
 DIRSRC = ./srcs/
 DIROBJ = ./.obj/
 
 SRC = 	main.cpp\
+		AModuleSimple.cpp\
 		ModuleHostname.cpp\
 		NcursesDisplay.cpp
 

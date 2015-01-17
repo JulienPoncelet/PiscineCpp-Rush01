@@ -5,6 +5,7 @@
 # include <sstream>
 # include <vector>
 # include <list>
+# include <unistd.h>
 
 enum displayType_e{
 	SIMPLE = 1, POURCENTAGE, GRAPHICAL
@@ -13,12 +14,18 @@ enum displayType_e{
 struct Data {
 
 };
+
 class IMonitorModule;
-class IMonitorDisplay;
+class AModuleSimple;
 class ModuleHostname;
 
 # include <IMonitorModule.hpp>
-# include <IMonitorDisplay.hpp>
+# include <AModuleSimple.hpp>
 # include <ModuleHostname.hpp>
+
+class IMonitorModule;
+class NcursesDisplay;
+
 # include <NcursesDisplay.hpp>
+# include <IMonitorModule.hpp>
 #endif
