@@ -17,7 +17,9 @@ DIROBJ = ./.obj/
 
 SRC = 	main.cpp\
 		AModuleSimple.cpp\
-		ModuleHostname.cpp
+		ModuleHostname.cpp\
+		ModuleOSInfo.cpp\
+		ModuleTime.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
