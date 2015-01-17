@@ -24,6 +24,7 @@ class ModuleHostname;
 class ModuleOSInfo;
 class ModuleTime;
 class ModuleCPU;
+class ModuleRAM;
 
 # include <IMonitorModule.hpp>
 # include <AModuleSimple.hpp>
@@ -31,6 +32,7 @@ class ModuleCPU;
 # include <ModuleOSInfo.hpp>
 # include <ModuleTime.hpp>
 # include <ModuleCPU.hpp>
+# include <ModuleRAM.hpp>
 
 class Position;
 class NWindow;

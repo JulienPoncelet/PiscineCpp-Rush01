@@ -11,12 +11,6 @@ void body(std::list<IMonitorModule *> list, NcursesDisplay *display) {
 	std::list<IMonitorModule *>::const_iterator	ite = list.end();
 	AModuleSimple								*module;
 
-/*	(void) it;
-	(void) ite;
-	(void) module;
-	(void) list;
-	(void) display; */
-
 	for (it = list.begin(); it != ite; ++it) {
 		module = static_cast<AModuleSimple *>(*it);
 		module->fillContent();
@@ -45,11 +39,12 @@ void timer(int seconds, std::list<IMonitorModule*> list, NcursesDisplay *display
 
 int						main(void) {
 
-	NcursesDisplay		*display = new NcursesDisplay();
-	ModuleHostname		* module0 = new ModuleHostname();
-	ModuleOSInfo		* module1 = new ModuleOSInfo();
-	ModuleTime			* module2 = new ModuleTime();
+	NcursesDisplay		* display = new NcursesDisplay();
+	IMonitorModule		* module0 = new ModuleHostname();
+	IMonitorModule		* module1 = new ModuleOSInfo();
+	IMonitorModule		* module2 = new ModuleTime();
 	IMonitorModule		* module3 = new ModuleCPU();
+	IMonitorModule		* module4 = new ModuleRAM();
 
 	std::list<IMonitorModule*> list;
 
@@ -57,6 +52,7 @@ int						main(void) {
 	list.push_back(module1);
 	list.push_back(module2);
 	list.push_back(module3);
+	list.push_back(module4);
 
 	display->init();
 	display->initWindows(list);
