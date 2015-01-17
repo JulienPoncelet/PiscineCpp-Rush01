@@ -37,8 +37,12 @@ public:
     void    displaySprite(Position p, std::string const *sprite, int h, int w, int color);
     void    displaySprite(NWindow *window, Position p, std::string const *sprite, int h, int w, int color);
 
+    void    updateWindow(IMonitorModule *module);
+    void    deleteWindow(std::string const &title);
+
     void    initWindows(std::list<IMonitorModule *> const &windows);
     void    reorderWindows(std::list<IMonitorModule *> windows);
+    void    refreshWindows(void);
     void    hideWindow(std::list<IMonitorModule *>::const_iterator at);
     void    showWindow(std::list<IMonitorModule *>::const_iterator at);
 

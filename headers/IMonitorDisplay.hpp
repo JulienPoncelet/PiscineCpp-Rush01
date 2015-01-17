@@ -24,6 +24,9 @@ public:
     virtual void    displayCurve(Position p, std::vector<int> const &data, int color) = 0;
     virtual void    displaySprite(Position p, std::string const *sprite, int h, int w, int color) = 0;
 
+    virtual void    updateWindow(IMonitorModule *module) = 0;
+    virtual void    deleteWindow(std::string const &title) = 0;
+
     virtual void    initWindows(std::list<IMonitorModule *> const &windows) = 0;
     virtual void    reorderWindows(std::list<IMonitorModule *> windows) = 0;
     virtual void    hideWindow(std::list<IMonitorModule *>::const_iterator at) = 0;

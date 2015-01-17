@@ -22,6 +22,8 @@ int						main(void) {
 
 	display->initWindows(lst);
 	getch();
+	display->updateWindow(module2);
+	getch();
 	display->restore();
 	delete display;
 	delete module0;

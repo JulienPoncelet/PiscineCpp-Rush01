@@ -145,7 +145,7 @@ void    NcursesDisplay::displayWindow(Position p, IMonitorModule *module, int h,
     this->_windows.insert(std::pair<std::string, NWindow *>(module->getTitle(), window));
     wattron(win, COLOR_PAIR(3));
     mvwprintw(win, 0, 1, module->getTitle().c_str());
-    wattroff(win, COLOR_PAIR(2));
+    wattroff(win, COLOR_PAIR(3));
     wattron(win, COLOR_PAIR(2));
     mvwprintw(win, 1, 1, module->getContent().c_str());
     wattroff(win, COLOR_PAIR(2));
@@ -235,6 +235,41 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
         this->displayWindow(Position(y, 0), module, h, w, 2);
         y += h;
     }
+}
+
+void    NcursesDisplay::updateWindow(IMonitorModule *module) {
+    std::map<std::string, NWindow *>::iterator it;
+    WINDOW      *win;
+
+    it = this->_windows.find(module->getTitle());
+    win = &(*it->second->getWindow());
+    werase(win);
+    wborder(win, ACS_VLINE, ACS_VLINE, ACS_HLINE, ACS_HLINE, ACS_ULCORNER, ACS_URCORNER, ACS_LLCORNER, ACS_LRCORNER);
+    wattron(win, COLOR_PAIR(3));
+    mvwprintw(win, 0, 1, module->getTitle().c_str());
+    wattroff(win, COLOR_PAIR(3));
+    mvwprintw(win, 1, 1, "Hello world!"); //module->getContent().c_str());
+    wrefresh(win);
+}
+
+void    NcursesDisplay::deleteWindow(std::string const &title) {
+    std::map<std::string, NWindow *>::iterator it;
+
+    it = this->_windows.find(title);
+    delete &(*it->second);
+    this->_windows.erase(it);
+}
+
+void    NcursesDisplay::refreshWindows(void) {
+//    std::map<std::string, NWindow *>::const_iterator     it;
+//    std::map<std::string, NWindow *>::const_iterator     ite = this->_windows.end();
+//    int                                             y = 0, w = 70, h;
+//
+//    for (it = this->_windows.begin(); it != ite; ++it) {
+//        h = *it->second->getHeight() + 2;
+//        this->displayWindow(Position(y, 0), , h, w, 2);
+//        y += h;
+//    }
 }
 
 void    NcursesDisplay::reorderWindows(std::list<IMonitorModule *> windows) {
