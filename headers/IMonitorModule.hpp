@@ -14,11 +14,13 @@ public:
 
 	virtual void					setTitle(std::string title) = 0;
 	virtual void					setType(displayType_e type) = 0;
+	virtual std::string				toString(void) const = 0;
 
 protected:
 
 	std::string				_title;
 	displayType_e			_type;
+	int						_height;
 
 };
 
