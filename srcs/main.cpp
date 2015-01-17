@@ -1,21 +1,19 @@
 #include <ft_gkrellm.hpp>
 
 int						main(void) {
-	ModuleHostname		* module0 = new ModuleHostname();
 	NcursesDisplay		*display = new NcursesDisplay();
+	ModuleHostname		* module0 = new ModuleHostname();
 	ModuleOSInfo		* module1 = new ModuleOSInfo();
 	ModuleTime			* module2 = new ModuleTime();
 
-	std::cout << *module0 << std::endl;
-	std::cout << *module1 << std::endl;
-	std::cout << *module2 << std::endl;
+	std::list<IMonitorModule*> lst;
 
 	display->init();
-	display->displayWindow(Position(0, 0), "Title", 10, 50, 2);
-	display->displayWindow(Position(10, 0), "Other title", 20, 50, 2);
-	display->displayWindow(Position(30, 0), "Last title", 10, 50, 2);
+	lst.push_back(module0);
+	lst.push_back(module1);
+	lst.push_back(module2);
+	display->initWindows(lst);
 	getch();
-//	getTitle()
 	display->restore();
 	delete module0;
 	delete display;

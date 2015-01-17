@@ -222,7 +222,15 @@ void    NcursesDisplay::displaySprite(NWindow *window, Position p, std::string c
 
 // AND THE MAGIC IS HERE
 void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) {
-    (void) windows;
+    std::list<IMonitorModule *>::const_iterator     it;
+    std::list<IMonitorModule *>::const_iterator     ite = windows.end();
+    IMonitorModule                                  *module;
+    int                                             y = 0, h = 10, w = 30;
+    for (it = windows.begin(); it != ite; ++it) {
+        module = *it;
+        this->displayWindow(Position(y, 0), module->getTitle(), h, w, 2);
+        y += 10;
+    }
 }
 
 void    NcursesDisplay::reorderWindows(std::list<IMonitorModule *> windows) {
