@@ -5,6 +5,10 @@ int						main(void) {
 	ModuleHostname		* module0 = new ModuleHostname();
 	ModuleOSInfo		* module1 = new ModuleOSInfo();
 	ModuleTime			* module2 = new ModuleTime();
+	ModuleTime			* module3 = new ModuleTime();
+	ModuleTime			* module4 = new ModuleTime();
+	ModuleTime			* module5 = new ModuleTime();
+	ModuleTime			* module6 = new ModuleTime();
 
 	std::list<IMonitorModule*> lst;
 
@@ -12,6 +16,10 @@ int						main(void) {
 	lst.push_back(module0);
 	lst.push_back(module1);
 	lst.push_back(module2);
+	lst.push_back(module3);
+	lst.push_back(module4);
+	lst.push_back(module5);
+	lst.push_back(module6);
 	display->initWindows(lst);
 	getch();
 	display->restore();

@@ -44,11 +44,11 @@ void    switchDefaultColors(bool save) {
 
 void    initColors() {
     // init default color - TODO: later create different games color profiles
-    init_color(COLOR_BLACK, 0, 0, 0);
+    init_color(COLOR_BLACK, 0, 0, 100);
     init_color(COLOR_RED, 700, 0, 0);
     init_color(COLOR_GREEN, 0, 0, 700);
     init_color(COLOR_YELLOW, 700, 700, 0);
-    init_color(COLOR_BLUE, 0, 0, 700);
+    init_color(COLOR_BLUE, 0, 0, 900);
     init_color(COLOR_MAGENTA, 700, 0, 700);
     init_color(COLOR_CYAN, 0, 400, 700);
     init_color(COLOR_WHITE, 700, 700, 700);
@@ -75,7 +75,7 @@ void    setColors(void) {
 
     // init pairs
     init_pair(1, COLOR_BLACK, COLOR_BLACK);
-    init_pair(2, COLOR_BLUE, COLOR_BLACK);
+    init_pair(2, COLOR_WHITE, COLOR_BLACK);
     init_pair(3, COLOR_BLUE, COLOR_CYAN);
 
 }
@@ -225,11 +225,11 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
     std::list<IMonitorModule *>::const_iterator     it;
     std::list<IMonitorModule *>::const_iterator     ite = windows.end();
     IMonitorModule                                  *module;
-    int                                             y = 0, h = 10, w = 30;
+    int                                             y = 0, h = 3, w = 50;
     for (it = windows.begin(); it != ite; ++it) {
         module = *it;
         this->displayWindow(Position(y, 0), module->getTitle(), h, w, 2);
-        y += 10;
+        y += h;
     }
 }
 
