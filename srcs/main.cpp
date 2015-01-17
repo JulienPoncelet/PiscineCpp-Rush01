@@ -15,6 +15,7 @@ int						main(void) {
 	display->displayWindow(Position(10, 0), "Other title", 20, 50, 2);
 	display->displayWindow(Position(30, 0), "Last title", 10, 50, 2);
 	getch();
+//	getTitle()
 	display->restore();
 	delete module0;
 	delete display;

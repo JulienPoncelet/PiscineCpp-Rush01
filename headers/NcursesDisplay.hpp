@@ -48,8 +48,8 @@ public:
 
 private:
 
-    static bool         _VERBOSE;
-    std::list<NWindow *> _windows;
+    static bool                         _VERBOSE;
+    std::map<std::string, NWindow *>    _windows;
 
 };
 

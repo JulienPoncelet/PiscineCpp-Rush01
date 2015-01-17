@@ -5,6 +5,7 @@
 # include <sstream>
 # include <vector>
 # include <list>
+# include <map>
 # include <cstdlib>
 # include <unistd.h>
 # include <ncurses.h>

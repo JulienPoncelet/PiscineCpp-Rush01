@@ -142,7 +142,7 @@ void    NcursesDisplay::displayWindow(Position p, std::string title, int h, int 
     NWindow     *window = new NWindow(p.getY(), p.getX(), h, w, color);
     WINDOW      *win = window->getWindow();
 
-    this->_windows.push_back(window);
+    this->_windows.insert(std::pair<std::string, NWindow *>(title, window));
     wattron(win, COLOR_PAIR(3));
     mvwprintw(win, 0, 1, title.c_str());
     wattroff(win, COLOR_PAIR(3));
