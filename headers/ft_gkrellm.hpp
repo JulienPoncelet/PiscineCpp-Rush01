@@ -16,10 +16,14 @@ enum displayType_e{
 class IMonitorModule;
 class AModuleSimple;
 class ModuleHostname;
+class ModuleOSInfo;
+class ModuleTime;
 
 # include <IMonitorModule.hpp>
 # include <AModuleSimple.hpp>
 # include <ModuleHostname.hpp>
+# include <ModuleOSInfo.hpp>
+# include <ModuleTime.hpp>
 
 class IMonitorDisplay;
 class NcursesDisplay;
