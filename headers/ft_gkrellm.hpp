@@ -8,6 +8,7 @@
 # include <cstdlib>
 # include <unistd.h>
 # include <ncurses.h>
+# include <algorithm>
 
 enum displayType_e{
 	SIMPLE = 1, POURCENTAGE, GRAPHICAL
@@ -18,12 +19,14 @@ class AModuleSimple;
 class ModuleHostname;
 class ModuleOSInfo;
 class ModuleTime;
+class ModuleCPU;
 
 # include <IMonitorModule.hpp>
 # include <AModuleSimple.hpp>
 # include <ModuleHostname.hpp>
 # include <ModuleOSInfo.hpp>
 # include <ModuleTime.hpp>
+# include <ModuleCPU.hpp>
 
 class IMonitorDisplay;
 class NcursesDisplay;
@@ -32,4 +35,5 @@ class Position;
 # include <Position.hpp>
 # include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
+
 #endif

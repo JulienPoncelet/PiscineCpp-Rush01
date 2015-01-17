@@ -4,6 +4,7 @@ ModuleOSInfo::ModuleOSInfo(void) : AModuleSimple() {
 	setTitle("OS Info");
 	setType(SIMPLE);
 	fillContent();
+	fillHeight(getContent());
 	return ;
 }
 
@@ -36,6 +37,7 @@ std::string 				ModuleOSInfo::toString(void) const {
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
 	out << "\tContent: " << getContent() << std::endl;
+	out << "\tHeight: " << getHeight() << std::endl;
 	out << "\033[0m";
 	return out.str();
 }

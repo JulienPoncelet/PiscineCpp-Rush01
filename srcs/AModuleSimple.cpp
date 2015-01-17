@@ -4,6 +4,7 @@ AModuleSimple::AModuleSimple(void) {
 	setTitle("Module Simple");
 	setType(SIMPLE);
 	setContent("Default Content");
+	setHeight(3);
 	return ;
 }
 
@@ -20,6 +21,7 @@ AModuleSimple 				& AModuleSimple::operator=(AModuleSimple const & rhs) {
 	setTitle(rhs.getTitle());
 	setType(rhs.getType());
 	setContent(rhs.getContent());
+	setHeight(rhs.getHeight());
 	return *this;
 }
 
@@ -36,9 +38,16 @@ std::string 				AModuleSimple::toString(void) const {
 	out << "\tTitle: " << getTitle() << std::endl;
 	out << "\tType: " << getType() << std::endl;
 	out << "\tContent: " << getContent() << std::endl;
+	out << "\tHeight: " << getHeight() << std::endl;
 	out << "\033[0m";
 	return out.str();
 }
+
+void						AModuleSimple::fillHeight(std::string const & content) {
+	setHeight(std::count(content.begin(), content.end(), '\n') + 1);
+	return ;
+}
+
 
 std::string const			& AModuleSimple::getTitle(void) const {
 	return _title;
@@ -50,6 +59,10 @@ displayType_e const			& AModuleSimple::getType(void) const {
 
 std::string const			& AModuleSimple::getContent(void) const {
 	return _content;
+}
+
+int const					& AModuleSimple::getHeight(void) const {
+	return _height;
 }
 
 void						AModuleSimple::setTitle(std::string title) {
@@ -64,5 +77,10 @@ void						AModuleSimple::setType(displayType_e type) {
 
 void						AModuleSimple::setContent(std::string content) {
 	_content = content;
+	return ;
+}
+
+void						AModuleSimple::setHeight(int height) {
+	_height = height;
 	return ;
 }
