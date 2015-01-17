@@ -138,28 +138,33 @@ void    NcursesDisplay::restore(void) {
     endwin();
 }
 
-void    NcursesDisplay::displayWindow(std::string title) {
+void    NcursesDisplay::displayWindow(Position p, std::string title) {
+    (void) p;
     (void) title;
 }
 
-void    NcursesDisplay::displayText(std::string const &text) {
-    (void) text;
+void    NcursesDisplay::displayText(Position p, std::string const &text) {
+    mvprintw(p.getY(), p.getX(), text.c_str());
 }
 
-void    NcursesDisplay::displayUnit(std::string const &text, std::string const &unit) {
+void    NcursesDisplay::displayUnit(Position p, std::string const &text, std::string const &unit) {
+    (void) p;
     (void) text;
     (void) unit;
 }
 
-void    NcursesDisplay::displayBarChart(std::vector<int> const &data) {
+void    NcursesDisplay::displayBarChart(Position p, std::vector<int> const &data) {
+    (void) p;
     (void) data;
 }
 
-void    NcursesDisplay::displayCurve(std::vector<int> const &data) {
+void    NcursesDisplay::displayCurve(Position p, std::vector<int> const &data) {
+    (void) p;
     (void) data;
 }
 
-void    NcursesDisplay::displaySprite(std::string const *sprite, int h, int w) {
+void    NcursesDisplay::displaySprite(Position p, std::string const *sprite, int h, int w) {
+    (void) p;
     (void) sprite;
     (void) h;
     (void) w;

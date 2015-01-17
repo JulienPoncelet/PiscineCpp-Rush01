@@ -23,7 +23,9 @@ class ModuleHostname;
 
 class IMonitorDisplay;
 class NcursesDisplay;
+class Position;
 
+# include <Position.hpp>
 # include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
 #endif

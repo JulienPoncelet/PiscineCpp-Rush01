@@ -7,7 +7,7 @@ int						main(void) {
 	std::cout << *module0 << std::endl;
 
 	display->init();
-	printw("Hello world!");
+	display->displayText(Position(10, 10), "Hello world!");
 	getch();
 	display->restore();
 	delete module0;

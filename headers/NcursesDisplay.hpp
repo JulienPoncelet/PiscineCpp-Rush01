@@ -20,12 +20,12 @@ public:
     void    init(void);
     void    restore(void);
 
-    void    displayWindow(std::string title);
-    void    displayText(std::string const &text);
-    void    displayUnit(std::string const &text, std::string const &unit);
-    void    displayBarChart(std::vector<int> const &data);
-    void    displayCurve(std::vector<int> const &data);
-    void    displaySprite(std::string const *sprite, int h, int w);
+    void    displayWindow(Position p, std::string title);
+    void    displayText(Position p, std::string const &text);
+    void    displayUnit(Position p, std::string const &text, std::string const &unit);
+    void    displayBarChart(Position p, std::vector<int> const &data);
+    void    displayCurve(Position p, std::vector<int> const &data);
+    void    displaySprite(Position p, std::string const *sprite, int h, int w);
 
     void    initWindows(std::list<IMonitorModule *> const &windows);
     void    reorderWindows(std::list<IMonitorModule *> windows);

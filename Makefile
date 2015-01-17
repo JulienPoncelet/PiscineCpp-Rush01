@@ -6,7 +6,8 @@ DIROBJ = ./.obj/
 SRC = 	main.cpp\
 		AModuleSimple.cpp\
 		ModuleHostname.cpp\
-		NcursesDisplay.cpp
+		NcursesDisplay.cpp\
+		Position.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
