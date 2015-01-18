@@ -12,11 +12,6 @@
 # include <time.h>
 # include <algorithm>
 
-typedef std::list< std::string > StringList;
-typedef std::list< int > IntList;
-typedef std::list< IntList > GraphList;
-typedef std::map< char, bool > Options;
-
 enum displayType_e{
 	SIMPLE = 1, GRAPH
 };
@@ -30,6 +25,12 @@ class ModuleTime;
 class ModuleCPUInfo;
 class ModuleCPUUsage;
 class ModuleRAM;
+
+typedef std::list< std::string > StringList;
+typedef std::list< int > IntList;
+typedef std::list< IntList > GraphList;
+typedef std::map< char, bool > Options;
+typedef std::list< IMonitorModule * > ModuleList;
 
 # include <IMonitorModule.hpp>
 # include <AModuleSimple.hpp>
@@ -52,5 +53,7 @@ class NcursesDisplay;
 # include <NcursesDisplay.hpp>
 
 Options				getOptions(int ac, char **av);
+void				printHelp(void);
+ModuleList			fillModules(Options options);
 
 #endif

@@ -45,38 +45,19 @@ int									main(int ac, char **av) {
 		return 0;
 	}
 
+	ModuleList						modules = fillModules(options);
+
 	NcursesDisplay					* display = new NcursesDisplay();
-	IMonitorModule					* module0 = new ModuleHostname();
-	IMonitorModule					* module1 = new ModuleOSInfo();
-	IMonitorModule					* module2 = new ModuleTime();
-	IMonitorModule					* module3 = new ModuleCPUInfo();
-	IMonitorModule					* module4 = new ModuleCPUUsage();
-	IMonitorModule					* module5 = new ModuleRAM();
 
-	std::list< IMonitorModule * > modules;
+	display->init();
+	display->initWindows(modules);
 
-	modules.push_back(module0);
-	modules.push_back(module1);
-	modules.push_back(module2);
-	modules.push_back(module3);
-	modules.push_back(module4);
-	modules.push_back(module5);
+	timer(1, modules, display);
 
-	// display->init();
-	// display->initWindows(modules);
-
-	// timer(1, modules, display);
-
-	// display->restore();
+	display->restore();
 
 	delete display;
-	delete module0;
-	delete module1;
-	delete module2;
-	delete module3;
-	delete module4;
-	delete module5;
-
+	
 	return 0;
 }
 

@@ -18,13 +18,13 @@
 
 #include <ft_gkrellm.hpp>
 
-Options					getOptions(int ac, char **av) {
-	Options 			options;
+Options							getOptions(int ac, char **av) {
+	Options 					options;
 
 	options['n'] = true;  // ncurse (default)
 	options['g'] = false; // GTK
 	options['a'] = true;  // all modules
-	options['u'] = false; // Hostname Module
+	options['k'] = false; // Hostname Module
 	options['o'] = false; // OS Info Module
 	options['t'] = false; // Time Module
 	options['i'] = false; // CPU Info Module
@@ -36,27 +36,62 @@ Options					getOptions(int ac, char **av) {
 
 	for (int i = 0; i < ac; i++) {
 		str = av[i];
-		if (str[0] == "-" and str.size() == 2)
+		if (str[0] == '-' and str.size() == 2)
 			options[str[1]] = true;
 	}
 
 	return options;
 }
 
-void					printHelp(void) {
+void							printHelp(void) {
 	std::cout << "Diplay options: " << std::endl;
 	std::cout << "\t -n: Diplay the modules with ncurse (default)" << std::endl;
 	std::cout << "\t -g: Diplay the modules with GTK" << std::endl << std::endl;
 	std::cout << "Modules options: " << std::endl;
 	std::cout << "\t -a: Add all the modules (default)" << std::endl;
-	std::cout << "\t -u: Add the Hostname Module" << std::endl;
-	std::cout << "\t -o: Add the Hostname Module" << std::endl;
-	std::cout << "\t -t: Add the Hostname Module" << std::endl;
-	std::cout << "\t -i: Add the Hostname Module" << std::endl;
-	std::cout << "\t -u: Add the Hostname Module" << std::endl;
-	std::cout << "\t -r: Add the Hostname Module" << std::endl << std::endl;
-	std::cout << "\t -h: Display this help" << std::endl;
-
+	std::cout << "\t -k: Add the Hostname Module" << std::endl;
+	std::cout << "\t -o: Add the OS Info Module" << std::endl;
+	std::cout << "\t -t: Add the Time Module" << std::endl;
+	std::cout << "\t -i: Add the CPU Info Module" << std::endl;
+	std::cout << "\t -u: Add the CPU Usage Module" << std::endl;
+	std::cout << "\t -r: Add the RAM Module" << std::endl << std::endl;
+	std::cout << "Others: " << std::endl;
+	std::cout << "\t-h: Display this help" << std::endl;
 
 	return ;
+}
+
+ModuleList						fillModules(Options options) {
+	ModuleList					modules;
+
+	IMonitorModule				* module0 = new ModuleHostname();
+	IMonitorModule				* module1 = new ModuleOSInfo();
+	IMonitorModule				* module2 = new ModuleTime();
+	IMonitorModule				* module3 = new ModuleCPUInfo();
+	IMonitorModule				* module4 = new ModuleCPUUsage();
+	IMonitorModule				* module5 = new ModuleRAM();	
+
+	if (options['k'])
+		modules.push_back(module0);
+	if (options['o'])
+		modules.push_back(module1);
+	if (options['t'])
+		modules.push_back(module2);
+	if (options['i'])
+		modules.push_back(module3);
+	if (options['u'])
+		modules.push_back(module4);
+	if (options['r'])
+		modules.push_back(module5);
+
+	if (modules.size() == 0) {
+		modules.push_back(module0);
+		modules.push_back(module1);
+		modules.push_back(module2);
+		modules.push_back(module3);
+		modules.push_back(module4);
+		modules.push_back(module5);
+	}
+
+	return modules;
 }
