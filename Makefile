@@ -15,10 +15,12 @@ SRC = 	main.cpp\
 		ModuleNetwork.cpp
 
 SRC += 	NcursesDisplay.cpp\
-		NWindow.cpp \
-		Position.cpp
+		NWindow.cpp\
+		Position.cpp\
+		GtkDisplay.cpp
 
 SRC +=	getOptions.cpp
+
 
 OBJ = $(SRC:.cpp=.o)
 
