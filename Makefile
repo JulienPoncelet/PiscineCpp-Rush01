@@ -11,7 +11,8 @@ SRC = 	main.cpp\
 		ModuleTime.cpp\
 		ModuleCPUInfo.cpp\
 		ModuleCPUUsage.cpp\
-		ModuleRAM.cpp
+		ModuleRAM.cpp\
+		ModuleNetwork.cpp
 
 SRC += 	NcursesDisplay.cpp\
 		NWindow.cpp \

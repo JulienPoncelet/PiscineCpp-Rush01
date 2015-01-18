@@ -21,7 +21,7 @@
 Options							getOptions(int ac, char **av) {
 	Options 					options;
 
-	options['n'] = true;  // ncurse (default)
+	options['c'] = true;  // ncurse (default)
 	options['g'] = false; // GTK
 	options['a'] = true;  // all modules
 	options['k'] = false; // Hostname Module
@@ -30,6 +30,7 @@ Options							getOptions(int ac, char **av) {
 	options['i'] = false; // CPU Info Module
 	options['u'] = false; // CPU Usage Moduel
 	options['r'] = false; // RAM Module
+	options['n'] = false; // Network Module
 	options['h'] = false; // Help
 
 	std::string			str;
@@ -45,7 +46,7 @@ Options							getOptions(int ac, char **av) {
 
 void							printHelp(void) {
 	std::cout << "Diplay options: " << std::endl;
-	std::cout << "\t -n: Diplay the modules with ncurse (default)" << std::endl;
+	std::cout << "\t -c: Diplay the modules with ncurse (default)" << std::endl;
 	std::cout << "\t -g: Diplay the modules with GTK" << std::endl << std::endl;
 	std::cout << "Modules options: " << std::endl;
 	std::cout << "\t -a: Add all the modules (default)" << std::endl;
@@ -55,6 +56,7 @@ void							printHelp(void) {
 	std::cout << "\t -i: Add the CPU Info Module" << std::endl;
 	std::cout << "\t -u: Add the CPU Usage Module" << std::endl;
 	std::cout << "\t -r: Add the RAM Module" << std::endl << std::endl;
+	std::cout << "\t -n: Add the Network Module" << std::endl << std::endl;
 	std::cout << "Others: " << std::endl;
 	std::cout << "\t-h: Display this help" << std::endl;
 
@@ -70,6 +72,7 @@ ModuleList						fillModules(Options options) {
 	IMonitorModule				* module3 = new ModuleCPUInfo();
 	ModuleCPUUsage				* module4 = new ModuleCPUUsage();
 	IMonitorModule				* module5 = new ModuleRAM();	
+	IMonitorModule				* module6 = new ModuleNetwork();	
 
 	if (options['k'])
 		modules.push_back(module0);
@@ -83,6 +86,8 @@ ModuleList						fillModules(Options options) {
 		modules.push_back(module4);
 	if (options['r'])
 		modules.push_back(module5);
+	if (options['n'])
+		modules.push_back(module6);	
 
 	if (modules.size() == 0) {
 		modules.push_back(module0);
@@ -91,6 +96,7 @@ ModuleList						fillModules(Options options) {
 		modules.push_back(module3);
 		modules.push_back(module4);
 		modules.push_back(module5);
+		modules.push_back(module6);
 	}
 
 	return modules;
