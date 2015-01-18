@@ -1,5 +1,6 @@
 #ifndef FT_GKRELLM_HPP
 # define FT_GKRELLM_HPP
+
 # include <gtkmm.h>
 # include <iostream>
 # include <sstream>
@@ -12,7 +13,6 @@
 # include <time.h>
 # include <algorithm>
 # include <iomanip>
-
 
 enum displayType_e{
 	SIMPLE = 1, GRAPH
@@ -34,6 +34,7 @@ typedef std::list< int > IntList;
 typedef std::list< IntList > GraphList;
 typedef std::map< char, bool > Options;
 typedef std::list< IMonitorModule * > ModuleList;
+typedef std::list< Gtk::Label * > LabelList;
 
 # include <IMonitorModule.hpp>
 # include <AModuleSimple.hpp>
@@ -55,9 +56,16 @@ class NcursesDisplay;
 # include <NWindow.hpp>
 # include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
+# include <GtkDisplay.hpp>
 
 Options				getOptions(int ac, char **av);
 void				printHelp(void);
 ModuleList			fillModules(Options options);
+
+/**/
+
+void 				initWindows(Gtk::Window const & windoz,  ModuleList modules);
+
+/**/
 
 #endif

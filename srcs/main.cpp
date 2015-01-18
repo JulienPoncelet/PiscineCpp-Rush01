@@ -58,13 +58,12 @@ int									main(int ac, char **av) {
 	if (options['g']) {
 		Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(ac, av, "org.gtkmm.examples.base");
 
-  		Gtk::Window window;
-  		window.set_default_size(200, 200);
+  		GtkDisplay::Win 			window(modules);
 
-  		return app->run(window);
+  		app->run(window);
 	}
 	else {
-	NcursesDisplay					* display = new NcursesDisplay();
+		NcursesDisplay					* display = new NcursesDisplay();
 
 		display->init();
 		display->initWindows(modules);
@@ -77,5 +76,3 @@ int									main(int ac, char **av) {
 	}
 	return 0;
 }
-	
-	
