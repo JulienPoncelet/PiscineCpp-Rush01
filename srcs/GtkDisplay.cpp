@@ -5,6 +5,7 @@ GtkDisplay::Win::Win(ModuleList modules) :
   m_ButtonQuit("_Quit", true)
   {
 	// set_default_size(200, 200);
+	set_title("ft_gkrellm");
 	set_border_width(5);
 
 	ModuleList::iterator			it = modules.begin();
