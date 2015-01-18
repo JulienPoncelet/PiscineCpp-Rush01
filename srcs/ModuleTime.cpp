@@ -46,9 +46,18 @@ void						ModuleTime::fillContent(void) {
     struct tm 				* now = localtime(& t);
     std::stringstream		sstr;
 
-    sstr << now->tm_hour << ":";
-    sstr << now->tm_min << ":";
-    sstr << now->tm_sec;
+	if (now->tm_hour < 10)
+	    sstr << "0" << now->tm_hour << ":";
+	else
+	    sstr << now->tm_hour << ":";
+	if (now->tm_min < 10)
+	    sstr << "0" << now->tm_min << ":";
+	else
+	    sstr << now->tm_min << ":";
+	if (now->tm_sec < 10)
+    	sstr << "0" << now->tm_sec;
+	else
+	    sstr << now->tm_sec;
 
     StringList				content;
 
