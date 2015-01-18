@@ -37,35 +37,45 @@ void timer(int seconds, std::list<IMonitorModule*> list, NcursesDisplay *display
 	}
 }
 
-int						main(void) {
+int									main(int ac, char **av) {
+	Options							options = getOptions(--ac, ++av);
 
-	NcursesDisplay		* display = new NcursesDisplay();
-	IMonitorModule		* module0 = new ModuleHostname();
-	IMonitorModule		* module1 = new ModuleOSInfo();
-	IMonitorModule		* module2 = new ModuleTime();
-	IMonitorModule		* module3 = new ModuleCPU();
-	IMonitorModule		* module4 = new ModuleRAM();
+	if (options['h']) {
+		printHelp();
+		return 0;
+	}
 
-	std::list<IMonitorModule*> list;
+	NcursesDisplay					* display = new NcursesDisplay();
+	IMonitorModule					* module0 = new ModuleHostname();
+	IMonitorModule					* module1 = new ModuleOSInfo();
+	IMonitorModule					* module2 = new ModuleTime();
+	IMonitorModule					* module3 = new ModuleCPUInfo();
+	IMonitorModule					* module4 = new ModuleCPUUsage();
+	IMonitorModule					* module5 = new ModuleRAM();
 
-	list.push_back(module0);
-	list.push_back(module1);
-	list.push_back(module2);
-	list.push_back(module3);
-	list.push_back(module4);
+	std::list< IMonitorModule * > modules;
 
-	display->init();
-	display->initWindows(list);
+	modules.push_back(module0);
+	modules.push_back(module1);
+	modules.push_back(module2);
+	modules.push_back(module3);
+	modules.push_back(module4);
+	modules.push_back(module5);
 
-	timer(1, list, display);
+	// display->init();
+	// display->initWindows(modules);
 
-	display->restore();
+	// timer(1, modules, display);
+
+	// display->restore();
 
 	delete display;
 	delete module0;
 	delete module1;
 	delete module2;
 	delete module3;
+	delete module4;
+	delete module5;
 
 	return 0;
 }

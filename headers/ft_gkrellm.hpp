@@ -13,25 +13,32 @@
 # include <algorithm>
 
 typedef std::list< std::string > StringList;
+typedef std::list< int > IntList;
+typedef std::list< IntList > GraphList;
+typedef std::map< char, bool > Options;
 
 enum displayType_e{
-	SIMPLE = 1, POURCENTAGE, GRAPHICAL
+	SIMPLE = 1, GRAPH
 };
 
 class IMonitorModule;
 class AModuleSimple;
+class AModuleGraph;
 class ModuleHostname;
 class ModuleOSInfo;
 class ModuleTime;
-class ModuleCPU;
+class ModuleCPUInfo;
+class ModuleCPUUsage;
 class ModuleRAM;
 
 # include <IMonitorModule.hpp>
 # include <AModuleSimple.hpp>
+# include <AModuleGraph.hpp>
 # include <ModuleHostname.hpp>
 # include <ModuleOSInfo.hpp>
 # include <ModuleTime.hpp>
-# include <ModuleCPU.hpp>
+# include <ModuleCPUInfo.hpp>
+# include <ModuleCPUUsage.hpp>
 # include <ModuleRAM.hpp>
 
 class Position;
@@ -43,5 +50,7 @@ class NcursesDisplay;
 # include <NWindow.hpp>
 # include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
+
+Options				getOptions(int ac, char **av);
 
 #endif
