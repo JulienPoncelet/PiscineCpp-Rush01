@@ -3,3 +3,5 @@ CMakeLists.txt
 .bin
 ft-gkrellm
 .gitignore
+.gitignore
+ft_gkrellm
