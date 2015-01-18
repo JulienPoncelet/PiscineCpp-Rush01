@@ -11,6 +11,7 @@
 # include <ncurses.h>
 # include <time.h>
 # include <algorithm>
+# include <iomanip>
 
 enum displayType_e{
 	SIMPLE = 1, GRAPH

@@ -44,20 +44,11 @@ std::string 				ModuleTime::toString(void) const {
 void						ModuleTime::fillContent(void) {
     time_t					t = time(0);
     struct tm 				* now = localtime(& t);
-    std::stringstream		sstr;
+    std::ostringstream		sstr;
 
-	if (now->tm_hour < 10)
-	    sstr << "0" << now->tm_hour << ":";
-	else
-	    sstr << now->tm_hour << ":";
-	if (now->tm_min < 10)
-	    sstr << "0" << now->tm_min << ":";
-	else
-	    sstr << now->tm_min << ":";
-	if (now->tm_sec < 10)
-    	sstr << "0" << now->tm_sec;
-	else
-	    sstr << now->tm_sec;
+	sstr << std::setfill('0') << std::setw(2) << now->tm_hour << ":";
+	sstr << std::setfill('0') << std::setw(2) << now->tm_min << ":";
+	sstr << std::setfill('0') << std::setw(2) << now->tm_sec;
 
     StringList				content;
 
