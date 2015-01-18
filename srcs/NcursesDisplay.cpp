@@ -78,6 +78,7 @@ void    setColors(void) {
     init_pair(1, COLOR_BLACK, COLOR_BLACK);
     init_pair(2, COLOR_WHITE, COLOR_BLACK);
     init_pair(3, COLOR_BLUE, COLOR_CYAN);
+    init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
 
 }
 
@@ -184,11 +185,18 @@ void    NcursesDisplay::displayBarChart(NWindow *window, GraphList graphs) {
 	int	x = 5;
 	int y = 10;
 	for (; it != ite; ++it) {
-		IntList::const_iterator iit = (*it).begin();
-		IntList::const_iterator iite = (*it).end();
+		IntList	list;
+		list = *it;
+		IntList::const_iterator iit = list.begin();
+		IntList::const_iterator iite = list.end();
+		list.push_back(2);
+		list.push_back(5);
+		list.push_back(9);
+		list.push_back(4);
+		list.push_back(3);
 		for (; iit != iite; ++iit) {
-			mvwprintw(window->getWindow(), y, x, "%d", (*it).size());
-			x +=2;
+			mvwprintw(window->getWindow(), y, x, "%d", *iit);
+			x += 2;
 		}
 		wrefresh(window->getWindow());
 		break;
