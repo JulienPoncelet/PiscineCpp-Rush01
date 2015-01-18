@@ -182,8 +182,8 @@ void    NcursesDisplay::displayBarChart(GraphList graphs) {
 void    NcursesDisplay::displayBarChart(NWindow *window, GraphList graphs) {
 	GraphList::const_iterator it = graphs.begin();
 	GraphList::const_iterator ite = graphs.end();
-	int	x = 5;
-	int y = 10;
+	int	x = 68;
+	int y;
 	for (; it != ite; ++it) {
 		IntList	list;
 		list = *it;
@@ -194,12 +194,22 @@ void    NcursesDisplay::displayBarChart(NWindow *window, GraphList graphs) {
 		list.push_back(9);
 		list.push_back(4);
 		list.push_back(3);
+		list.push_back(1);
+		list.push_back(10);
+		wattron(window->getWindow(), COLOR_PAIR(4));
 		for (; iit != iite; ++iit) {
-			mvwprintw(window->getWindow(), y, x, "%d", *iit);
-			x += 2;
+			//mvwprintw(window->getWindow(), y, x, "%d", *iit);
+			int maxy = 14;//getcury(window->getWindow());
+			for (y = maxy; y > maxy - *iit; y--) {
+				mvwaddch(window->getWindow(), y, x, '@');
+			}
+			x--;
 		}
 		wrefresh(window->getWindow());
+		wattroff(window->getWindow(), COLOR_PAIR(4));
 		break;
+		x = 68;
+		y = 24;
 	}
 }
 
