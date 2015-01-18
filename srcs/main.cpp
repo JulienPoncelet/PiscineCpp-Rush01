@@ -64,7 +64,7 @@ int									main(int ac, char **av) {
   		return app->run(window);
 	}
 	else {
-	NcursesDisplay					* display = new NcursesDisplay();
+		NcursesDisplay					* display = new NcursesDisplay();
 
 		display->init();
 		display->initWindows(modules);
