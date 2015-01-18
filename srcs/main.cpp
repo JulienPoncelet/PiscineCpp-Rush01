@@ -56,7 +56,7 @@ int									main(int ac, char **av) {
 	ModuleList						modules = fillModules(options);
 
 	if (options['g']) {
-		Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "org.gtkmm.examples.base");
+		Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(ac, av, "org.gtkmm.examples.base");
 
   		Gtk::Window window;
   		window.set_default_size(200, 200);

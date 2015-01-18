@@ -1,6 +1,6 @@
 #ifndef FT_GKRELLM_HPP
 # define FT_GKRELLM_HPP
-
+# include <gtkmm.h>
 # include <iostream>
 # include <sstream>
 # include <vector>
@@ -12,7 +12,7 @@
 # include <time.h>
 # include <algorithm>
 # include <iomanip>
-# include <gtkmm.h>
+
 
 enum displayType_e{
 	SIMPLE = 1, GRAPH
