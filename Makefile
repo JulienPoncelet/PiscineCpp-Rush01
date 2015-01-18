@@ -25,6 +25,7 @@ OBJ = $(SRC:.cpp=.o)
 DIROBJS = $(addprefix $(DIROBJ), $(OBJ))
 
 HEADERS = ./headers/
+MORE = `pkg-config gtkmm-3.0 --cflags --libs`
 
 CFLAGS = -Wall -Werror -Wextra -g
 CC = /usr/local/bin/g++
@@ -38,7 +39,7 @@ $(NAME): $(DIROBJS)
 $(DIROBJ)%.o: $(DIRSRC)%.cpp
 	@printf 'Compiling %s: [\033[32mDONE\033[0m]\n' '$^'
 	@mkdir -p $(DIROBJ)
-	@$(CC) $(CFLAGS) -c $^ -I $(HEADERS) -o $@
+	@$(CC) $(CFLAGS) -c $^ -I $(HEADERS) -o $@ $(MORE)
 
 clean:
 	@rm -rf $(DIROBJ)

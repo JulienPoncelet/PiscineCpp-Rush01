@@ -12,6 +12,7 @@
 # include <time.h>
 # include <algorithm>
 # include <iomanip>
+# include <gtkmm.h>
 
 enum displayType_e{
 	SIMPLE = 1, GRAPH

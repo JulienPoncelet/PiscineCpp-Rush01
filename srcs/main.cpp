@@ -55,17 +55,27 @@ int									main(int ac, char **av) {
 
 	ModuleList						modules = fillModules(options);
 
+	if (options['g']) {
+		Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "org.gtkmm.examples.base");
+
+  		Gtk::Window window;
+  		window.set_default_size(200, 200);
+
+  		return app->run(window);
+	}
+	else {
 	NcursesDisplay					* display = new NcursesDisplay();
 
-	display->init();
-	display->initWindows(modules);
+		display->init();
+		display->initWindows(modules);
 	
-	timer(1, modules, display);
+		timer(1, modules, display);
 
-	display->restore();
+		display->restore();
 
-	delete display;
-	
+		delete display;
+	}
 	return 0;
 }
-
+	
+	
