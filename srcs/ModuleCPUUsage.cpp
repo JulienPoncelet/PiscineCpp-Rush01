@@ -92,9 +92,17 @@ void							ModuleCPUUsage::fillContent(void) {
 void                            ModuleCPUUsage::fillGraph(StringList content) {
     GraphList                   graphs = getGraphs();
 
-    IntList                     userGraph;
-    StringList::iterator        tmp = content.begin();
-    std::string 				userString = *tmp;
+    if (graphs.size() == 0) {
+        IntList                 user;
+        IntList                 sys;
+        graphs.push_back(user);
+        graphs.push_back(sys);
+    }
+
+    GraphList::iterator         graphIterator = graphs.begin();
+    IntList                     userGraph = *graphIterator;
+    StringList::iterator        stringIterator = content.begin();
+    std::string 				userString = *stringIterator;
     std::string 				sub;
  	int 						n;
 
@@ -108,9 +116,10 @@ void                            ModuleCPUUsage::fillGraph(StringList content) {
 
 	graphs.push_back(userGraph);
     
-    IntList                     sysGraph;
-    tmp = ++content.begin();
-    std::string 				sysString = *tmp;
+    ++graphIterator;
+    IntList                     sysGraph = *graphIterator;
+    stringIterator = ++content.begin();
+    std::string 				sysString = *stringIterator;
 
     sysString.replace(0, 14, "");
 
@@ -123,6 +132,8 @@ void                            ModuleCPUUsage::fillGraph(StringList content) {
 
 	graphs.push_back(sysGraph);
 
+    graphs.pop_front();
+    graphs.pop_front();
     setGraphs(graphs);
 
     return ;

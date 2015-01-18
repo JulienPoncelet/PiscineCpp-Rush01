@@ -68,7 +68,7 @@ ModuleList						fillModules(Options options) {
 	IMonitorModule				* module1 = new ModuleOSInfo();
 	IMonitorModule				* module2 = new ModuleTime();
 	IMonitorModule				* module3 = new ModuleCPUInfo();
-	IMonitorModule				* module4 = new ModuleCPUUsage();
+	ModuleCPUUsage				* module4 = new ModuleCPUUsage();
 	IMonitorModule				* module5 = new ModuleRAM();	
 
 	if (options['k'])
