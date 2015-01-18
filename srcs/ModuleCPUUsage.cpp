@@ -111,8 +111,8 @@ void                            ModuleCPUUsage::fillGraph(StringList content) {
 	n = (strtol(sub.c_str(),0,10) / 10) + 1;
 
 	if (userGraph.size() >= 70)
-		userGraph.pop_front();
-	userGraph.push_back(n);
+		userGraph.pop_back();
+	userGraph.push_front(n);
 
 	graphs.push_back(userGraph);
     
@@ -127,8 +127,8 @@ void                            ModuleCPUUsage::fillGraph(StringList content) {
 	n = (strtol(sub.c_str(),0,10) / 10) + 1;
 
 	if (sysGraph.size() >= 70)
-		sysGraph.pop_front();
-	sysGraph.push_back(n);
+		sysGraph.pop_back();
+	sysGraph.push_front(n);
 
 	graphs.push_back(sysGraph);
 

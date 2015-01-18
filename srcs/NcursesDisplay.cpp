@@ -79,6 +79,7 @@ void    setColors(void) {
     init_pair(2, COLOR_WHITE, COLOR_BLACK);
     init_pair(3, COLOR_BLUE, COLOR_CYAN);
     init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
+    init_pair(5, COLOR_CYAN, COLOR_CYAN);
 
 }
 
@@ -182,34 +183,27 @@ void    NcursesDisplay::displayBarChart(GraphList graphs) {
 void    NcursesDisplay::displayBarChart(NWindow *window, GraphList graphs) {
 	GraphList::const_iterator it = graphs.begin();
 	GraphList::const_iterator ite = graphs.end();
-	int	x = 68;
+	int	x = 68, i = 4, maxy = 14;
 	int y;
+
 	for (; it != ite; ++it) {
 		IntList	list;
 		list = *it;
 		IntList::const_iterator iit = list.begin();
 		IntList::const_iterator iite = list.end();
-		list.push_back(2);
-		list.push_back(5);
-		list.push_back(9);
-		list.push_back(4);
-		list.push_back(3);
-		list.push_back(1);
-		list.push_back(10);
-		wattron(window->getWindow(), COLOR_PAIR(4));
+		wattron(window->getWindow(), COLOR_PAIR(i));
 		for (; iit != iite; ++iit) {
-			//mvwprintw(window->getWindow(), y, x, "%d", *iit);
-			int maxy = 14;//getcury(window->getWindow());
 			for (y = maxy; y > maxy - *iit; y--) {
-				mvwaddch(window->getWindow(), y, x, '@');
+				if (x > 1)
+					mvwaddch(window->getWindow(), y, x, '@');
 			}
 			x--;
 		}
 		wrefresh(window->getWindow());
-		wattroff(window->getWindow(), COLOR_PAIR(4));
-		break;
+		wattroff(window->getWindow(), COLOR_PAIR(i));
 		x = 68;
-		y = 24;
+		maxy = 23;
+		i++;
 	}
 }
 
