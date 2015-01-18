@@ -11,6 +11,7 @@ bool    NcursesDisplay::_VERBOSE = true;
 // ***************************************************
 
 void    switchDefaultColors(bool save) {
+	
     static short black[3];
     static short red[3];
     static short green[3];
@@ -178,8 +179,20 @@ void    NcursesDisplay::displayBarChart(GraphList graphs) {
 }
 
 void    NcursesDisplay::displayBarChart(NWindow *window, GraphList graphs) {
-    (void) window;
-    (void) graphs;
+	GraphList::const_iterator it = graphs.begin();
+	GraphList::const_iterator ite = graphs.end();
+	int	x = 5;
+	int y = 10;
+	for (; it != ite; ++it) {
+		IntList::const_iterator iit = (*it).begin();
+		IntList::const_iterator iite = (*it).end();
+		for (; iit != iite; ++iit) {
+			mvwprintw(window->getWindow(), y, x, "%d", (*it).size());
+			x +=2;
+		}
+		wrefresh(window->getWindow());
+		break;
+	}
 }
 
 void    NcursesDisplay::displaySprite(Position p, StringList list, int h, int w, int color) {
@@ -225,17 +238,18 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
 void    NcursesDisplay::displayWindow(Position p, IMonitorModule *module, int h, int w, int color) {
     NWindow     *window = new NWindow(p.getY(), p.getX(), h, w, color);
     WINDOW      *win = window->getWindow();
+	AModuleGraph	*graph;
 
     this->_windows.insert(std::pair<std::string, NWindow *>(module->getTitle(), window));
     wattron(win, COLOR_PAIR(3));
     mvwprintw(win, 0, 1, module->getTitle().c_str());
     wattroff(win, COLOR_PAIR(3));
     wattron(win, COLOR_PAIR(2));
-    //mvwprintw(win, 1, 1, module->getContent().c_str());
-    // but now
     this->displaySprite(window, Position(1, 1), module->getContent(), module->getContent().size(), 0, 1);
-    if (module->getType() == GRAPH)
-        this->displayBarChart(window, module->getGraphs());
+    if (module->getType() == GRAPH) {
+		graph = static_cast<AModuleGraph *>(module);
+        this->displayBarChart(window, graph->getGraphs());
+	}
     wattroff(win, COLOR_PAIR(2));
     wrefresh(win);
 }
@@ -244,6 +258,7 @@ void    NcursesDisplay::updateWindow(IMonitorModule *module) {
     std::map<std::string, NWindow *>::iterator it;
     NWindow     *window;
     WINDOW      *win;
+	AModuleGraph	*graph;
 
     it = this->_windows.find(module->getTitle());
     window = &(*it->second);
@@ -254,6 +269,10 @@ void    NcursesDisplay::updateWindow(IMonitorModule *module) {
     mvwprintw(win, 0, 1, module->getTitle().c_str());
     wattroff(win, COLOR_PAIR(3));
     this->displaySprite(window, Position(1, 1), module->getContent(), module->getContent().size(), 0, 1);
+    if (module->getType() == GRAPH) {
+		graph = static_cast<AModuleGraph *>(module);
+        this->displayBarChart(window, graph->getGraphs());
+	}
     wrefresh(win);
 }
 

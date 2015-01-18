@@ -9,15 +9,18 @@ std::ostream 				& operator<<(std::ostream & out, IMonitorModule const & rhs){
 void body(std::list<IMonitorModule *> list, NcursesDisplay *display) {
 	std::list<IMonitorModule *>::const_iterator	it;
 	std::list<IMonitorModule *>::const_iterator	ite = list.end();
-	IMonitorModule								*module;
+	AModuleSimple								*module;
+	AModuleGraph								*graph;
 
 	for (it = list.begin(); it != ite; ++it) {
-		module = static_cast<AModuleSimple *>(*it);
-		module = static_cast<AModuleSimple *>(module);
-		module->fillContent();
-		if (module->getType() == GRAPH) {
-			module = reinterpret_cast<AModuleGraph *>(module);
-			module->fillGraph();
+		if ((*it)->getType() == GRAPH) {
+			graph = reinterpret_cast<AModuleGraph *>(*it);
+			graph->fillContent();
+			graph->fillGraph(graph->getContent());
+		}
+		else {
+			module = static_cast<AModuleSimple *>(*it);
+			module->fillContent();
 		}
 		display->updateWindow(*it);
 		refresh();
@@ -56,7 +59,7 @@ int									main(int ac, char **av) {
 
 	display->init();
 	display->initWindows(modules);
-
+	
 	timer(1, modules, display);
 
 	display->restore();
