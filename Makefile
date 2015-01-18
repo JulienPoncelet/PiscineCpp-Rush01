@@ -17,6 +17,8 @@ SRC += 	NcursesDisplay.cpp\
 		NWindow.cpp \
 		Position.cpp
 
+SRC +=	getOptions.cpp
+
 OBJ = $(SRC:.cpp=.o)
 
 DIROBJS = $(addprefix $(DIROBJ), $(OBJ))

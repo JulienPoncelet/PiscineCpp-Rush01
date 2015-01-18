@@ -15,6 +15,7 @@
 typedef std::list< std::string > StringList;
 typedef std::list< int > IntList;
 typedef std::list< IntList > GraphList;
+typedef std::map< char, bool > Options;
 
 enum displayType_e{
 	SIMPLE = 1, GRAPH
@@ -49,5 +50,7 @@ class NcursesDisplay;
 # include <NWindow.hpp>
 # include <IMonitorDisplay.hpp>
 # include <NcursesDisplay.hpp>
+
+Options				getOptions(int ac, char **av);
 
 #endif
