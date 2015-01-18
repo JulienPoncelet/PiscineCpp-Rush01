@@ -90,7 +90,7 @@ void							ModuleCPUUsage::fillContent(void) {
 }
 
 void                            ModuleCPUUsage::fillGraph(StringList content) {
-    GraphList                   graphs;
+    GraphList                   graphs = getGraphs();
 
     IntList                     userGraph;
     StringList::iterator        tmp = content.begin();
