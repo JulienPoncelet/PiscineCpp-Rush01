@@ -26,6 +26,7 @@ class ModuleTime;
 class ModuleCPUInfo;
 class ModuleCPUUsage;
 class ModuleRAM;
+class ModuleNetwork;
 
 typedef std::list< std::string > StringList;
 typedef std::list< int > IntList;
@@ -42,6 +43,7 @@ typedef std::list< IMonitorModule * > ModuleList;
 # include <ModuleCPUInfo.hpp>
 # include <ModuleCPUUsage.hpp>
 # include <ModuleRAM.hpp>
+# include <ModuleNetwork.hpp>
 
 class Position;
 class NWindow;
