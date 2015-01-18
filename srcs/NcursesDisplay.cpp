@@ -139,21 +139,7 @@ void    NcursesDisplay::restore(void) {
     endwin();
 }
 
-void    NcursesDisplay::displayWindow(Position p, IMonitorModule *module, int h, int w, int color) {
-    NWindow     *window = new NWindow(p.getY(), p.getX(), h, w, color);
-    WINDOW      *win = window->getWindow();
 
-    this->_windows.insert(std::pair<std::string, NWindow *>(module->getTitle(), window));
-    wattron(win, COLOR_PAIR(3));
-    mvwprintw(win, 0, 1, module->getTitle().c_str());
-    wattroff(win, COLOR_PAIR(3));
-    wattron(win, COLOR_PAIR(2));
-    //mvwprintw(win, 1, 1, module->getContent().c_str());
-    // but now
-    this->displaySprite(window, Position(1, 1), module->getContent(), module->getContent().size(), 0, 1);
-    wattroff(win, COLOR_PAIR(2));
-    wrefresh(win);
-}
 
 void    NcursesDisplay::displayText(Position p, std::string const &text, int color) {
     attron(COLOR_PAIR(color));
@@ -187,27 +173,13 @@ void    NcursesDisplay::displayUnit(NWindow *window, Position p, std::string con
     wattroff(win, COLOR_PAIR(color));
 }
 
-void    NcursesDisplay::displayBarChart(Position p, std::vector<int> const &data) {
-    (void) p;
-    (void) data;
+void    NcursesDisplay::displayBarChart(GraphList graphs) {
+    (void) graphs;
 }
 
-void    NcursesDisplay::displayBarChart(NWindow *window, Position p, std::vector<int> const &data) {
-    (void) p;
-    (void) data;
+void    NcursesDisplay::displayBarChart(NWindow *window, GraphList graphs) {
     (void) window;
-}
-
-void    NcursesDisplay::displayCurve(Position p, std::vector<int> const &data, int color) {
-    (void) color;
-    (void) p;
-    (void) data;
-}
-void    NcursesDisplay::displayCurve(NWindow *window, Position p, std::vector<int> const &data, int color) {
-    (void) color;
-    (void) p;
-    (void) data;
-    (void) window;
+    (void) graphs;
 }
 
 void    NcursesDisplay::displaySprite(Position p, StringList list, int h, int w, int color) {
@@ -250,6 +222,24 @@ void    NcursesDisplay::initWindows(std::list<IMonitorModule *> const &windows) 
     }
 }
 
+void    NcursesDisplay::displayWindow(Position p, IMonitorModule *module, int h, int w, int color) {
+    NWindow     *window = new NWindow(p.getY(), p.getX(), h, w, color);
+    WINDOW      *win = window->getWindow();
+
+    this->_windows.insert(std::pair<std::string, NWindow *>(module->getTitle(), window));
+    wattron(win, COLOR_PAIR(3));
+    mvwprintw(win, 0, 1, module->getTitle().c_str());
+    wattroff(win, COLOR_PAIR(3));
+    wattron(win, COLOR_PAIR(2));
+    //mvwprintw(win, 1, 1, module->getContent().c_str());
+    // but now
+    this->displaySprite(window, Position(1, 1), module->getContent(), module->getContent().size(), 0, 1);
+    if (module->getType() == GRAPH)
+        this->displayBarChart(window, module->getGraphs());
+    wattroff(win, COLOR_PAIR(2));
+    wrefresh(win);
+}
+
 void    NcursesDisplay::updateWindow(IMonitorModule *module) {
     std::map<std::string, NWindow *>::iterator it;
     NWindow     *window;
@@ -275,29 +265,3 @@ void    NcursesDisplay::deleteWindow(std::string const &title) {
     this->_windows.erase(it);
 }
 
-void    NcursesDisplay::refreshWindows(void) {
-//    std::map<std::string, NWindow *>::const_iterator     it;
-//    std::map<std::string, NWindow *>::const_iterator     ite = this->_windows.end();
-//    int                                             y = 0, w = 70, h;
-//
-//    for (it = this->_windows.begin(); it != ite; ++it) {
-//        h = *it->second->getHeight() + 2;
-//        this->displayWindow(Position(y, 0), , h, w, 2);
-//        y += h;
-//    }
-}
-
-void    NcursesDisplay::reorderWindows(std::list<IMonitorModule *> windows) {
-    (void) windows;
-}
-
-void    NcursesDisplay::hideWindow(std::list<IMonitorModule *>::const_iterator at) {
-    (void) at;
-}
-void    NcursesDisplay::showWindow(std::list<IMonitorModule *>::const_iterator at) {
-    (void) at;
-}
-
-void    NcursesDisplay::changeSkin(std::string const &skin) {
-    (void) skin;
-}

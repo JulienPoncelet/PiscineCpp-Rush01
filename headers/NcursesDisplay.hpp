@@ -28,11 +28,8 @@ public:
     void    displayUnit(Position p, std::string const &text, std::string const &unit, int color);
     void    displayUnit(NWindow *window, Position p, std::string const &text, std::string const &unit, int color);
 
-    void    displayBarChart(Position p, std::vector<int> const &data);
-    void    displayBarChart(NWindow *window, Position p, std::vector<int> const &data);
-
-    void    displayCurve(Position p, std::vector<int> const &data, int color);
-    void    displayCurve(NWindow *window, Position p, std::vector<int> const &data, int color);
+    void    displayBarChart(GraphList graphs);
+    void    displayBarChart(NWindow *window, GraphList graphs);
 
     void    displaySprite(Position p, StringList list, int h, int w, int color);
     void    displaySprite(NWindow *window, Position p, StringList list, int h, int w, int color);
@@ -41,12 +38,6 @@ public:
     void    deleteWindow(std::string const &title);
 
     void    initWindows(std::list<IMonitorModule *> const &windows);
-    void    reorderWindows(std::list<IMonitorModule *> windows);
-    void    refreshWindows(void);
-    void    hideWindow(std::list<IMonitorModule *>::const_iterator at);
-    void    showWindow(std::list<IMonitorModule *>::const_iterator at);
-
-    void    changeSkin(std::string const &skin);
 
     // exceptions
 

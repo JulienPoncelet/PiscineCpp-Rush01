@@ -9,11 +9,16 @@ std::ostream 				& operator<<(std::ostream & out, IMonitorModule const & rhs){
 void body(std::list<IMonitorModule *> list, NcursesDisplay *display) {
 	std::list<IMonitorModule *>::const_iterator	it;
 	std::list<IMonitorModule *>::const_iterator	ite = list.end();
-	AModuleSimple								*module;
+	IMonitorModule								*module;
 
 	for (it = list.begin(); it != ite; ++it) {
 		module = static_cast<AModuleSimple *>(*it);
+		module = static_cast<AModuleSimple *>(module);
 		module->fillContent();
+		if (module->getType() == GRAPH) {
+			module = reinterpret_cast<AModuleGraph *>(module);
+			module->fillGraph();
+		}
 		display->updateWindow(*it);
 		refresh();
 	}
